@@ -4,19 +4,10 @@
 \alias{Classify}
 \title{Resvidex pipeline}
 \usage{
-Classify(
-  inputFile,
-  outputFile = "results.csv",
-  model,
-  QC_value = 0.4,
-  Length_value = 0.5,
-  N_value = 2
-)
+Classify(inputFile, model, QC_value = 0.4, Length_value = 0.5, N_value = 2)
 }
 \arguments{
 \item{inputFile}{string path relative to the working directory of the input file. Must be in fasta format.}
-
-\item{outputFile}{string path relative to the working directory of the output file. Default = "results.csv"}
 
 \item{model}{A random forest classification model. Must be FULL_GENOME. See \link{FULL_GENOME}.}
 
@@ -27,7 +18,7 @@ Classify(
 \item{N_value}{numeric value from 0 to 100. Percentage of acceptable ambiguous bases. (default = 2)}
 }
 \value{
-a comma-delimited file
+a dataframe
 }
 \description{
 Wrapper function that performs all the recommended step. This includes
@@ -40,9 +31,17 @@ Wrapper function that performs all the recommended step. This includes
 }
 \examples{
 
-\dontrun{
+
 file_path<-system.file("extdata","test_dataset.fasta",package="resvidex")
 
-Classify(inputFile=file_path,model=FULL_GENOME)
+
+Classification<-Classify(inputFile=file_path,model=FULL_GENOME)
+
+#the variable Classification has now all the sequences classified
+Classification
+
+\dontrun{
+#if you want to export the prediction
+utils::write.csv2(Classification,"Classification_file.csv")
 }
 }

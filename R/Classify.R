@@ -10,21 +10,27 @@
 #' }
 #'
 #' @param inputFile string path relative to the working directory of the input file. Must be in fasta format.
-#' @param outputFile string path relative to the working directory of the output file. Default = "results.csv"
 #' @inheritParams QualityControl
 #'
-#' @return a comma-delimited file
+#' @return a dataframe
 #' @export
 #'
 #' @examples
 #'
-#' \dontrun{
+#'
 #' file_path<-system.file("extdata","test_dataset.fasta",package="resvidex")
 #'
-#' Classify(inputFile=file_path,model=FULL_GENOME)
+#'
+#' Classification<-Classify(inputFile=file_path,model=FULL_GENOME)
+#'
+#' #the variable Classification has now all the sequences classified
+#' Classification
+#'
+#' \dontrun{
+#' #if you want to export the prediction
+#' utils::write.csv2(Classification,"Classification_file.csv")
 #' }
 Classify<-function(inputFile,
-                           outputFile="results.csv",
                            model,
                            QC_value=0.4,
                            Length_value=0.5,
@@ -49,6 +55,6 @@ Classify<-function(inputFile,
 
   PredictedData <- Quality_filter(PredictedData)
 
-  utils::write.csv2(PredictedData,outputFile)
+  return(PredictedData)
 
 }
