@@ -140,12 +140,10 @@ QualityControl<-function(data,
 
   data$N_QC<-(data$N<N_value)
 
-  if ("Flu"==model$info){
-    data$Length_QC<-(data$Length>(1-Length_value)*1700)&(data$Length<(1+Length_value)*1700)
+  if ("RSV_full_genome"==model$info){
+    data$Length_QC<-(data$Length>(1-Length_value)*15000)&(data$Length<(1+Length_value)*15000)
   }
-  if ("Flu_Ha1"==model$info){
-    data$Length_QC<-(data$Length>(1-Length_value)*1100)&(data$Length<(1+Length_value)*1100)
-  }
+
   data$Probability_QC<-data$Probability>QC_value
 
 

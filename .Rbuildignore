@@ -1,2 +1,6 @@
 ^LICENSE\.md$
 ^inst/myapp/models$
+^resvidex\.Rproj$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

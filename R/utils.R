@@ -10,7 +10,7 @@
 #' @export
 #'
 #' @examples
-#' ModelControl(FULL_HA)
+#' ModelControl(FULL_GENOME)
 ModelControl<- function(model){
 
   if (is.null(model)){

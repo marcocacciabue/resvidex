@@ -21,7 +21,7 @@
 #' \dontrun{
 #' file_path<-system.file("extdata","test_dataset.fasta",package="resvidex")
 #'
-#' Classifyresvidex(inputFile=file_path,model=FULL_GENOME)
+#' Classify(inputFile=file_path,model=FULL_GENOME)
 #' }
 Classify<-function(inputFile,
                            outputFile="results.csv",
