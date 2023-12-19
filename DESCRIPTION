@@ -12,9 +12,8 @@ Authors@R: c(
 Description: A set of functions for classifying RSV sequences. It includes
     a shiny app for interactive functionality.
 License: MIT + file LICENSE
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+Depends: 
+    R (>= 2.10)
 Imports: 
     ape,
     bslib,
@@ -30,6 +29,7 @@ Imports:
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-Depends: 
-    R (>= 2.10)
+Encoding: UTF-8
 LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
