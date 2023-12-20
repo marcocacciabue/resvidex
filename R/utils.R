@@ -17,7 +17,7 @@ ModelControl<- function(model){
     stop("Model argument must be indicated and cannot be null. Try model=FULL_GENOME")
   }
 
-  if (methods::is(model)!="ranger"){
+  if (!"ranger" %in% methods::is(model)){
     stop("Model must be a ranger object. Try model=FULL_GENOME")
   }
 
@@ -45,4 +45,5 @@ ignore_unused_imports <- function() {
   shinyjs::click
   tibble::add_row
   rmarkdown::clean_site
+  shiny::actionButton
   }
