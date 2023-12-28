@@ -16,6 +16,7 @@ library(shinyjs)
 #for mac, without this Rstudio crashes
 Sys.setenv(LIBGL_ALWAYS_SOFTWARE=1)
 #library(tibble)
+library(shinyWidgets)
 
 #library(parallel)
 
@@ -79,6 +80,13 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
                               sliderInput("Length_value", "Proportion of difference to the expected sequence length (default 0.5): :",
                                           min = 0.1, max = 1,
                                           value = 0.5, step = 0.05)),),
+
+      column(12, align = "center",
+             radioGroupButtons(
+               inputId = "select",
+               label = "Choose the model according your SequenceData length sequences",
+               choices = c("FULL_GENOME", "FULL_GENOME_NEW"),
+               status = "primary")),
       column(12, align = "center",
              actionButton("go", "RUN",class = "btn-info")),
 
@@ -153,7 +161,7 @@ sequence in the textbox"
     tmp<-values$SequenceData_FILE
     SequenceData<-ape::read.FASTA(tmp,type = "DNA")
 
-    model <- resvidex::FULL_GENOME
+   model <- model_reactive()$model
 
 
     #Calculate k-mer counts from SequenceData sequences
@@ -366,6 +374,15 @@ output$report <- downloadHandler(
 
   }
 )
+
+model_reactive <- eventReactive(input$select,{
+  if (input$select=="FULL_GENOME"){
+    model <- resvidex::FULL_GENOME}
+  else{
+      model <- resvidex::FULL_GENOME_NEW
+    }
+  list(model=model)
+})
 
 count_parallel<-function(x,kmer) ({
 
