@@ -9,10 +9,10 @@ Marco Cacciabue, Nahuel Fenoglio, Melina Obregón
 [![DOI](https://zenodo.org/badge/COMPLETE!!)](https://zenodo.org/badge/latestdoi/COMPLETE!!)
 [![](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
-<!-- badges: end -->
-
-If you have a working R and Rstudio setup you can install the released
-version of **ReSVidex** from [GitHub](https://github.com/) with:
+[![R-CMD-check](https://github.com/marcocacciabue/resvidex/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/marcocacciabue/resvidex/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end --> If you have a working R and Rstudio setup you can
+install the released version of **ReSVidex** from
+[GitHub](https://github.com/) with:
 
 ``` r
 if (!require("remotes", quietly = TRUE))
