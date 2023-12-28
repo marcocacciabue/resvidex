@@ -4,38 +4,90 @@ output: html_document
 params:
   n: NA
 ---
-This report was created using the **ReSVidex v`r version()`** software for subtyping of RSV sequences.<br /> 
+This report was created using the **ReSVidex v`r packageVersion("resvidex")`** software for subtyping of RSV sequences.<br /> 
 
 
 <h2>Run stats</h2>
 Run was performed by user *`r input$user`* on `r Sys.Date()`.<br />
-Input file *`r input$file[1,1]`* from which **`r as.character(length(data_reactive()$data_out$label))`** sequences were selected for analysis.<br />
+Input file *`r  values$SequenceData_FILE`* from which **`r as.character(length(data_reactive()$data_out$Label))`** sequences were selected for analysis.<br />
 
 <h2>Output table</h2>
-The following table lists the sequences under analysis and the corresponding classification results. 
+The following table lists the sequences under analysis that have passed the quality checks and the corresponding classification results. 
 ```{r,echo=FALSE, warning=FALSE,message=FALSE}
 # The `params` object is available in the document.
-col<-brewer.pal(5,"Blues")
-col2<-brewer.pal(5,"Reds")
-table<-table()
-   datatable(table,selection = 'single',
-            extensions = 'Buttons',
-            options = list(
-              columnDefs = list(list(targets = c(5,7), visible = FALSE)),
-              dom = 'Bfrtip',
-              lengthMenu = list(c(5, 15, -1), c('5', '15', 'All')),
-              pageLength = 15,
-              buttons =
-                list('copy', 'print', list(
-                  extend = 'collection',
-                  buttons = list(
-                    list(extend = 'csv', filename = paste(input$file[1,1],"ReSVidex_results"),sep=""),
-                    list(extend = 'excel', filename = paste(input$file[1,1],"ReSVidex_results"),sep=""),
-                    list(extend = 'pdf', filename = paste(input$file[1,1],"ReSVidex_results"),sep="")),
-                  text = 'Download'
-                )
-                )
-            ))%>%  formatStyle("Length","Length_QC",
-                     backgroundColor = styleEqual(c(0, 1), c(col2[3], col2[1])))%>% formatStyle("N","N_QC",
-                     backgroundColor = styleEqual(c(0, 1), c(col2[3], col2[1]))) 
+ col2<-"#7AC5CD"
+      col<-"#FF8C00"
+
+      table<-table_pass()
+ datatable(table,selection = 'single',
+                style = 'bootstrap',
+                extensions = 'Buttons',
+                options = list(
+                  columnDefs = list(list(targets = c(5,7,8), visible = FALSE)),
+                  dom = 'Bfrtip',
+                  lengthMenu = list(c(5, 15, -1), c('5', '15', 'All')),
+                  pageLength = 15,
+                  buttons =
+                    list('copy', 'print', list(
+                      extend = 'collection',
+                      buttons = list(
+                        list(extend = 'csv', filename = paste(input$file[1,1],"resvidex_results"),sep=""),
+                        list(extend = 'excel', filename = paste(input$file[1,1],"resvidex_results"),sep=""),
+                        list(extend = 'pdf', filename = paste(input$file[1,1],"resvidex_results"),sep="")),
+                      text = 'Download'
+                    ),
+                    list(
+                      extend = "collection",
+                      text = 'Show All',
+                      action = DT::JS("function ( e, dt, node, config ) {
+                                    dt.page.len(-1);
+                                    dt.ajax.reload();
+                                }")
+                    ))
+                ))%>%formatStyle("Length","Length_QC",backgroundColor = styleEqual(c(0, 1), c(col2, col)))%>%
+        formatStyle("N","N_QC",backgroundColor = styleEqual(c(0, 1), c(col2, col)))%>%
+        formatStyle("Probability","Probability_QC",backgroundColor = styleEqual(c(0, 1), c(col2, col)))
+
+ 
 ```
+<h2>Output table</h2>
+The following table lists the sequences under analysis that not have passed the quality checks.
+```{r,echo=FALSE, warning=FALSE,message=FALSE}
+# The `params` object is available in the document.
+ col2<-"#7AC5CD"
+      col<-"#FF8C00"
+
+ table<-table_reject()
+
+
+      datatable(table,selection = 'single',
+                style = 'bootstrap',
+                extensions = 'Buttons',
+                options = list(
+                  columnDefs = list(list(targets = c(5,7,8), visible = FALSE)),
+                  dom = 'Bfrtip',
+                  lengthMenu = list(c(5, 15, -1), c('5', '15', 'All')),
+                  pageLength = 15,
+                  buttons =
+                    list('copy', 'print', list(
+                      extend = 'collection',
+                      buttons = list(
+                        list(extend = 'csv', filename = paste(input$file[1,1],"resvidex_results"),sep=""),
+                        list(extend = 'excel', filename = paste(input$file[1,1],"resvidex_results"),sep=""),
+                        list(extend = 'pdf', filename = paste(input$file[1,1],"resvidex_results"),sep="")),
+                      text = 'Download'
+                    ),
+                    list(
+                      extend = "collection",
+                      text = 'Show All',
+                      action = DT::JS("function ( e, dt, node, config ) {
+                                    dt.page.len(-1);
+                                    dt.ajax.reload();
+                                }")
+                    ))
+                ))%>%formatStyle("Length","Length_QC",backgroundColor = styleEqual(c(0, 1), c(col2, col)))%>%
+        formatStyle("N","N_QC",backgroundColor = styleEqual(c(0, 1), c(col2, col)))%>%
+        formatStyle("Probability","Probability_QC",backgroundColor = styleEqual(c(0, 1), c(col2, col)))
+ 
+```
+

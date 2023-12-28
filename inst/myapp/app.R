@@ -86,9 +86,9 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
       div(id="Classification",DT::dataTableOutput("table"),
           DT::dataTableOutput("table_reject"),
 
-
-   hidden(div(id="Results",align = "center",
-       downloadButton('report',"Generate report (ENG)"))),
+      conditionalPanel(
+          condition='output.table!=null && output.table!=""',
+          downloadButton('report',"Generate report (ENG)")),
 
 
   )),
@@ -107,11 +107,6 @@ server <- shinyServer(function(input, output, session) {
 
   values <- reactiveValues(SequenceData_FILE = NULL)
 
-
-  observeEvent(input$go, {
-    req(input$file)
-    shinyjs::showElement(id= "Results")
-  })
 
 
   observeEvent(input$go, {
@@ -232,8 +227,8 @@ sequence in the textbox"
 
   output$table <- DT::renderDataTable({
 
-    col2<-"#ee65cd"
-      col<-"#ffc72c"
+    col2<-"#7AC5CD"
+      col<-"#FF8C00"
 
       table<-table_pass()
 
@@ -272,8 +267,8 @@ sequence in the textbox"
 
   output$table_reject <- DT::renderDataTable({
 
-    col2<-"#ee65cd"
-      col<-"#ffc72c"
+    col2<-"#7AC5CD"
+      col<-"#FF8C00"
 
       table<-table_reject()
 
@@ -371,15 +366,32 @@ output$report <- downloadHandler(
 
   }
 )
-version<-reactive({
-  version<-0.2
-  return(version)})
 
 count_parallel<-function(x,kmer) ({
 
 
   library(kmer)
   kcount(x,k= kmer)})
+
+output$report <- downloadHandler(
+  # For PDF output, change this to "report.pdf"
+  filename = "report.html",
+  content = function(file) {
+    # Copy the report file to a temporary directory before processing it, in
+    # case we don't have write permissions to the current working dir (which
+    # can happen when deployed).
+    tempReport <- file.path(tempdir(), "report.rmd")
+    file.copy("report.rmd", tempReport, overwrite = TRUE)
+
+    # Set up parameters to pass to Rmd document
+
+    # Knit the document, passing in the `params` list, and eval it in a
+    # child of the global environment (this isolates the code in the document
+    # from the code in this app).
+    rmarkdown::render(tempReport, output_file = file)
+    }
+  )
+
 
 })
 
