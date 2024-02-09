@@ -91,9 +91,14 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
              actionButton("go", "RUN",class = "btn-info")),
 
       fluidRow(),
+      conditionalPanel(
+        condition='output.table!=null && output.table!="A"',
+        div(strong("The following sequences have passed the quality test"))),
       div(id="Classification",DT::dataTableOutput("table"),
-          DT::dataTableOutput("table_reject"),
-
+      conditionalPanel(
+        condition='output.table_reject!=null && output.table_reject!=""',
+        div(strong("The following sequences have"),strong("NOT",style="color:red"),strong(" passed the quality test"))),
+      DT::dataTableOutput("table_reject"),
       conditionalPanel(
           condition='output.table!=null && output.table!=""',
           downloadButton('report',"Generate report (ENG)")),
