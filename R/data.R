@@ -22,6 +22,7 @@
 #'   \item{kmer}{k-mer size used for preprocessing}
 #'   \item{info}{extra information of the classification model (optional)}
 #'   \item{date}{date of model creation}
+#'   \item{genome_size}{sequence length}
 #' }
 "FULL_GENOME"
 
@@ -50,5 +51,6 @@
 #'   \item{kmer}{k-mer size used for preprocessing}
 #'   \item{info}{extra information of the classification model (optional)}
 #'   \item{date}{date of model creation}
+#'   \item{genome_size}{sequence length}
 #' }
-"FULL_GENOME_NEW"
+"G"

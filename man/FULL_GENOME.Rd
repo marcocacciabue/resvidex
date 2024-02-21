@@ -24,6 +24,7 @@ The model includes a list with 18 elements (modified from a Object of class \cod
 \item{kmer}{k-mer size used for preprocessing}
 \item{info}{extra information of the classification model (optional)}
 \item{date}{date of model creation}
+\item{genome_size}{sequence length}
 }
 }
 \usage{
