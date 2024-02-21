@@ -90,4 +90,22 @@ The following table lists the sequences under analysis that not have passed the 
         formatStyle("Probability","Probability_QC",backgroundColor = styleEqual(c(0, 1), c(col2, col)))
  
 ```
+<h2>
 
+Classification models
+
+</h2>
+
+The following table lists the models used for the classification.
+
+```{r,echo=FALSE, warning=FALSE,message=FALSE}
+
+
+model_data<-  model_reactive()$model
+
+model1_data<-data.frame(Model=model_data$info,
+                        date=model_data$date,
+                        trees=model_data$num.trees,
+                        Oob= round(model_data$prediction.error,4))
+datatable(model1_data)
+```
