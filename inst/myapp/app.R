@@ -8,11 +8,11 @@ library(DT)
 #library(plotly)
 library(shinyjs)
 options(shiny.maxRequestSize = 5*1024^2)
-library(rintrojs)
+#library(rintrojs)
 library(shinythemes)
 #library(magrittr)
 #library(dplyr)
-library(shinyjs)
+#library(shinyjs)
 #for mac, without this Rstudio crashes
 Sys.setenv(LIBGL_ALWAYS_SOFTWARE=1)
 #library(tibble)
@@ -27,7 +27,7 @@ library(shinyWidgets)
 
 ui <-   fluidPage(title = "ReSVidex whole genome version",
   useShinyjs(),
-  theme = shinytheme("spacelab"),
+  theme = shinythemes::shinytheme("spacelab"),
   includeScript("www/script.js"),
   includeCSS("www/style.css"),
   div( id="logo",

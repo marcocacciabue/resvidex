@@ -46,4 +46,5 @@ ignore_unused_imports <- function() {
   tibble::add_row
   rmarkdown::clean_site
   shiny::actionButton
+  shinythemes::shinytheme
   }
