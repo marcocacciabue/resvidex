@@ -240,8 +240,8 @@ sequence in the textbox"
 
   output$table <- DT::renderDataTable({
 
-    col2<-"#7AC5CD"
-      col<-"#FF8C00"
+    col<-"#7AC5CD"
+      col2<-"#FF8C00"
 
       table<-table_pass()
 
@@ -280,8 +280,8 @@ sequence in the textbox"
 
   output$table_reject <- DT::renderDataTable({
 
-    col2<-"#7AC5CD"
-      col<-"#FF8C00"
+      col<-"#7AC5CD"
+      col2<-"#FF8C00"
 
       table<-table_reject()
 
@@ -330,8 +330,8 @@ sequence in the textbox"
 # })
 #
 # output$table2 <- DT::renderDataTable({
-#   col<-brewer.pal(5,"Blues")
-#   col2<-brewer.pal(5,"Reds")
+#   col2<-brewer.pal(5,"Blues")
+#   col<-brewer.pal(5,"Reds")
 #
 #   table<-model_table()
 #   datatable(table,selection = 'single',
@@ -354,7 +354,7 @@ sequence in the textbox"
 #                               backgroundColor = styleEqual(c(0, 1), c(col[1], col[3])))%>%
 #                             formatStyle("Length","Length_QC",
 #                              backgroundColor = styleEqual(c(0, 1), c(col2[3], col2[1])))%>%
-#                             formatStyle("N","N_QC",backgroundColor = styleEqual(c(0, 1), c(col2[3], col2[1])))
+#                             formatStyle("N","N_QC",backgroundColor = styleEqual(c(0, 1), c(col3[3], col2[1])))
 #
 #
 # })
