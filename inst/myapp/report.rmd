@@ -15,8 +15,8 @@ Input file *`r  values$SequenceData_FILE`* from which **`r as.character(length(d
 The following table lists the sequences under analysis that have passed the quality checks and the corresponding classification results. 
 ```{r,echo=FALSE, warning=FALSE,message=FALSE}
 # The `params` object is available in the document.
- col2<-"#7AC5CD"
-      col<-"#FF8C00"
+ col<-"#7AC5CD"
+      col2<-"#FF8C00"
 
       table<-table_pass()
  datatable(table,selection = 'single',
@@ -54,8 +54,8 @@ The following table lists the sequences under analysis that have passed the qual
 The following table lists the sequences under analysis that not have passed the quality checks.
 ```{r,echo=FALSE, warning=FALSE,message=FALSE}
 # The `params` object is available in the document.
- col2<-"#7AC5CD"
-      col<-"#FF8C00"
+ col<-"#7AC5CD"
+      col2<-"#FF8C00"
 
  table<-table_reject()
 
