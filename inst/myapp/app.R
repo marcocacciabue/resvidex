@@ -85,7 +85,7 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
              radioGroupButtons(
                inputId = "select",
                label = "Choose the model according your SequenceData length sequences",
-               choices = c("FULL_GENOME", "G"),
+               choices = c("FULL GENOME", "G"),
                status = "primary")),
       column(12, align = "center",
              actionButton("go", "RUN",class = "btn-info")),
