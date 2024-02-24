@@ -85,7 +85,7 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
              radioGroupButtons(
                inputId = "select",
                label = "Choose the model according your SequenceData length sequences",
-               choices = c("FULL_GENOME", "FULL_GENOME_NEW"),
+               choices = c("FULL_GENOME", "G"),
                status = "primary")),
       column(12, align = "center",
              actionButton("go", "RUN",class = "btn-info")),
@@ -384,7 +384,7 @@ model_reactive <- eventReactive(input$select,{
   if (input$select=="FULL_GENOME"){
     model <- resvidex::FULL_GENOME}
   else{
-      model <- resvidex::FULL_GENOME_NEW
+      model <- resvidex::G
     }
   list(model=model)
 })
