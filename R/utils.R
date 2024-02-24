@@ -47,4 +47,5 @@ ignore_unused_imports <- function() {
   rmarkdown::clean_site
   shiny::actionButton
   shinythemes::shinytheme
+  rintrojs::introjs
   }
