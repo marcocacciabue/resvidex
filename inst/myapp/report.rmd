@@ -101,11 +101,8 @@ The following table lists the models used for the classification.
 ```{r,echo=FALSE, warning=FALSE,message=FALSE}
 
 
-model_data<-  model_reactive()$model
+model1_data<-  info_model()$model1_data
 
-model1_data<-data.frame(Model=model_data$info,
-                        date=model_data$date,
-                        trees=model_data$num.trees,
-                        Oob= round(model_data$prediction.error,4))
+
 datatable(model1_data)
 ```

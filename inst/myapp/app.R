@@ -84,9 +84,11 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
       column(12, align = "center",
              radioGroupButtons(
                inputId = "select",
-               label = "Choose the model according your SequenceData length sequences",
-               choices = c("FULL GENOME", "G"),
+               label = "Choose the model according to the length of your sequences",
+               choices = c("FULL_GENOME", "G"),
                status = "primary")),
+      column(12, align = "center",
+             DT::dataTableOutput("model")),
       column(12, align = "center",
              actionButton("go", "RUN",class = "btn-info")),
 
@@ -166,7 +168,7 @@ sequence in the textbox"
     tmp<-values$SequenceData_FILE
     SequenceData<-ape::read.FASTA(tmp,type = "DNA")
 
-   model <- model_reactive()$model
+    model <- model_reactive()$model
 
 
     #Calculate k-mer counts from SequenceData sequences
@@ -189,7 +191,7 @@ sequence in the textbox"
 
   data_predicted<-reactive({
     # req(values$SequenceData_FILE)
-    model <- resvidex::FULL_GENOME
+    model <- model_reactive()$model
     data_out<-data_reactive()$data_out
 
     data_out<-resvidex::QualityControl(model=model,
@@ -315,49 +317,6 @@ sequence in the textbox"
         formatStyle("N","N_QC",backgroundColor = styleEqual(c(0, 1), c(col2, col)))%>%
         formatStyle("Probability","Probability_QC",backgroundColor = styleEqual(c(0, 1), c(col2, col)))
   })
-  # output$plot2 <- renderPlotly({
-  #   Fast_tree_reactive()
-  #
-  # })
-
-
-
-# model_table<-reactive({
-#   model1<-model_reactive()$model
-#   model1_data<-data.frame(Model=model1$info,date=model1$date,trees=model1$num.trees,Oob= round(model1$prediction.error,4))
-#
-#   model_data
-# })
-#
-# output$table2 <- DT::renderDataTable({
-#   col2<-brewer.pal(5,"Blues")
-#   col<-brewer.pal(5,"Reds")
-#
-#   table<-model_table()
-#   datatable(table,selection = 'single',
-#             options = list(
-#               columnDefs = list(list(targets = c(5,7), visible = FALSE)),
-#               dom = 'Bfrtip',
-#               lengthMenu = list(c(5, 15, -1), c('5', '15', 'All')),
-#               pageLength = 15,
-#               buttons =
-#                 list('copy', 'print', list(
-#                   extend = 'collection',
-#                   buttons = list(
-#                     list(extend = 'csv', filename = paste(input$file[1,1],"ReSVidex_results"),sep=""),
-#                     list(extend = 'excel', filename = paste(input$file[1,1],"ReSVidex_results"),sep=""),
-#                     list(extend = 'pdf', filename = paste(input$file[1,1],"ReSVidex_results"),sep="")),
-#                   text = 'Download'
-#                 )
-#                 )
-#             ))%>% formatStyle("Rambaut","FLAG",
-#                               backgroundColor = styleEqual(c(0, 1), c(col[1], col[3])))%>%
-#                             formatStyle("Length","Length_QC",
-#                              backgroundColor = styleEqual(c(0, 1), c(col2[3], col2[1])))%>%
-#                             formatStyle("N","N_QC",backgroundColor = styleEqual(c(0, 1), c(col3[3], col2[1])))
-#
-#
-# })
 
 output$report <- downloadHandler(
 
@@ -379,6 +338,21 @@ output$report <- downloadHandler(
 
   }
 )
+
+info_model<-reactive({
+  req(input$select)
+  model_data<-  model_reactive()$model
+  model1_data<-data.frame(Model=model_data$info,
+                          date=model_data$date,
+                          trees=model_data$num.trees,
+                          length=model_data$genome_size,
+                          Oob= round(model_data$prediction.error,4))
+  return(model1_data)
+
+})
+output$model <- DT::renderDataTable({
+  info_model()
+})
 
 model_reactive <- eventReactive(input$select,{
   if (input$select=="FULL_GENOME"){
