@@ -1,13 +1,13 @@
 Package: resvidex
 Title: Molecular classification of Respiratory Syncytial Virus sequences
-Version: 0.0.0.9006
+Version: 0.0.0.9009
 Authors@R: c(
     person("Marco", "Cacciabue", , "marcocacciabue@yahoo.com", role = c("aut", "cre"),
            comment = c(ORCID = "http://orcid.org/0000-0002-1429-4252")),
     person("Melina", "Obregon", , "meliobre06@gmail.com", role = "aut",
-           comment = c(ORCID = "http://orcid.org/0000-0002-1429-4252")),
+           comment = c(ORCID = "http://orcid.org/0009-0000-9741-1890")),
     person("Nahuel", "Fenoglio", , "pequefenoglio99@gmail.com", role = "aut",
-           comment = c(ORCID = "http://orcid.org/0000-0002-1429-4252"))
+           comment = c(ORCID = "http://orcid.org/0009-0007-3163-2181"))
   )
 Description: A set of functions for classifying RSV sequences. It includes
     a shiny app for interactive functionality.
@@ -21,9 +21,11 @@ Imports:
     kmer,
     methods,
     ranger,
+    rintrojs,
     rmarkdown,
     shiny,
     shinyjs,
+    shinythemes,
     shinyWidgets,
     tibble
 Suggests: 
