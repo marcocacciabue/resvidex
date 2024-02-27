@@ -44,7 +44,7 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
       div( id="row_d_flex",
            div(id= "text-bg", "ReSVidex was developed by Marco Cacciabue and Stephanie Goya. Based on a machine learning classification model,
           it allows the user to identify the RSV subtype, genotype,
-          subgenotype and genetic lineage for each query sequence. This version of the app is for whole genome sequences only"))
+          subgenotype and genetic lineage for each query sequence."))
 
            )
 
@@ -88,9 +88,10 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
                choices = c("FULL_GENOME", "G"),
                status = "primary")),
       column(12, align = "center",
-             DT::dataTableOutput("model")),
-      column(12, align = "center",
              actionButton("go", "RUN",class = "btn-info")),
+      column(12, align = "center",
+             textOutput("model")),
+      br(),
 
       fluidRow(),
       conditionalPanel(
@@ -350,8 +351,16 @@ info_model<-reactive({
   return(model1_data)
 
 })
-output$model <- DT::renderDataTable({
-  info_model()
+output$model <- renderText({
+  req(input$go)
+  model_data<-  model_reactive()$model
+  paste0("You have run the app with the ",
+         model_data$info,
+         " model, version ",
+         model_data$date,
+         " designed for sequences close to ",
+         model_data$genome_size,
+         " nt long")
 })
 
 model_reactive <- eventReactive(input$select,{
