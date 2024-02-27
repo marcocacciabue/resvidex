@@ -360,7 +360,7 @@ output$model <- renderText({
          model_data$date,
          " designed for sequences close to ",
          model_data$genome_size,
-         " nt long")
+         " nt long.")
 })
 
 model_reactive <- eventReactive(input$select,{
