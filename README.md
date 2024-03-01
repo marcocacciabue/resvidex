@@ -164,7 +164,7 @@ q()
 
 #for WINDOWS 
 
-docker run --rm --volume %cd%:/nexus cacciabue/resvidex:cli R -e "setwd('nexus');library('resvidex');Classify(inputFile='test_dataset.fasta',model=FULL_GENOME)"
+docker run --rm --volume %cd%:/nexus cacciabue/resvidex:cli R -e "setwd('nexus');library('resvidex');Classification<-Classify(inputFile='test_dataset.fasta',model=FULL_GENOME);utils::write.csv2(Classification,'Classification_file.csv')"
 
 #for unix/MAC
 
