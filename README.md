@@ -141,7 +141,7 @@ setwd('nexus')
 
 file_path<-system.file("extdata","test_dataset.fasta",package="resvidex")
 
-# Use the wrapper function. You can change the classification model and pass other arguments
+# Use the wrapper function. You can pass other arguments
 Classify(inputFile=file_path,model=FULL_GENOME)
 
 # This command run the whole pipeline and saves a file in the working directory a "Results.csv" by default. You can change the name file setting the "outputFile" parameter.
