@@ -60,6 +60,8 @@ The overall classification algorithm that `Resvidex` uses is divided into three 
 
 `Resvidex` was designed to be used by researchers who want to classify their samples of HRSV. It is used at the moment as a part of a HRSV phylogeny investigation [@goya_unified_2024]
 
+# How to use the aplication
+![lalalalala](Imagen.jpg)
 
 # Acknowledgements
 
