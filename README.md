@@ -137,6 +137,9 @@ docker run -it --volume $(pwd):/nexus cacciabue/resvidex:cli
 ``` bash
 setwd('nexus')
 
+#Call the 'resvidex' library
+library(resvidex)
+
 # Indicate the file path to the fasta file to use.If your file is in your working directory you need to simply indicate the file name. In this case, we use a test file provided with the package itself. 
 
 file_path<-system.file("extdata","test_dataset.fasta",package="resvidex")
