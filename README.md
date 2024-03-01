@@ -126,10 +126,10 @@ docker pull cacciabue/resvidex:cli
 
 ``` bash
 #for WINDOWS 
-docker run --rm --volume %cd%:/nexus cacciabue/resvidex:cli
+docker run -it --rm --volume %cd%:/nexus cacciabue/resvidex:cli
 
 #for unix/MAC
-docker run -it --volume $(pwd):/nexus cacciabue/resvidex:cli
+docker run -it --rm --volume $(pwd):/nexus cacciabue/resvidex:cli
 ```
 
 4.  Now you can run
@@ -137,14 +137,21 @@ docker run -it --volume $(pwd):/nexus cacciabue/resvidex:cli
 ``` bash
 setwd('nexus')
 
+#Call the 'resvidex' library
+library(resvidex)
+
 # Indicate the file path to the fasta file to use.If your file is in your working directory you need to simply indicate the file name. In this case, we use a test file provided with the package itself. 
 
 file_path<-system.file("extdata","test_dataset.fasta",package="resvidex")
 
-# Use the wrapper function. You can change the classification model and pass other arguments
-Classify(inputFile=file_path,model=FULL_GENOME)
+# Use the wrapper function. You can pass other arguments
+Classification<-Classify(inputFile=file_path,model=FULL_GENOME)
+Classification
 
-# This command run the whole pipeline and saves a file in the working directory a "Results.csv" by default. You can change the name file setting the "outputFile" parameter.
+#if you want to export the prediction
+utils::write.csv2(Classification,'Classification_file.csv')
+
+# This command saves a file in the working directory as "Results.csv" by default. You can change the name file setting the "outputFile" parameter.
 
 # To exit the container just run
 
@@ -157,11 +164,11 @@ q()
 
 #for WINDOWS 
 
-docker run --rm --volume %cd%:/nexus cacciabue/resvidex:cli R -e "setwd('nexus');library('resvidex');Classify(inputFile='test_dataset.fasta',model=FULL_GENOME)"
+docker run --rm --volume %cd%:/nexus cacciabue/resvidex:cli R -e "setwd('nexus');library('resvidex');Classification<-Classify(inputFile='test_dataset.fasta',model=FULL_GENOME);utils::write.csv2(Classification,'Classification_file.csv')"
 
 #for unix/MAC
 
-docker run --rm --volume $(pwd):/nexus cacciabue/resvidex:cli R -e "setwd('nexus');library('resvidex');Classify(inputFile='test_dataset.fasta',model=FULL_GENOME)"
+docker run --rm --volume $(pwd):/nexus cacciabue/resvidex:cli R -e "setwd('nexus');library('resvidex');Classification<-Classify(inputFile='test_dataset.fasta',model=FULL_GENOME);utils::write.csv2(Classification,'Classification_file.csv')"
 
 
 # USER SHOULD CHANGE test_dataset.fasta for the correct file name
