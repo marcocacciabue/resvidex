@@ -144,7 +144,10 @@ file_path<-system.file("extdata","test_dataset.fasta",package="resvidex")
 # Use the wrapper function. You can pass other arguments
 Classify(inputFile=file_path,model=FULL_GENOME)
 
-# This command run the whole pipeline and saves a file in the working directory a "Results.csv" by default. You can change the name file setting the "outputFile" parameter.
+#if you want to export the prediction
+utils::write.csv2(Classification,"Classification_file.csv")
+
+# This command saves a file in the working directory as "Results.csv" by default. You can change the name file setting the "outputFile" parameter.
 
 # To exit the container just run
 
