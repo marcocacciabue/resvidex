@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Publishing DTD v1.2 20190208//EN"
+                  "JATS-publishing1.dtd">
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" dtd-version="1.2" article-type="other">
+<front>
+<journal-meta>
+<journal-id></journal-id>
+<journal-title-group>
+<journal-title>Journal of Open Source Software</journal-title>
+<abbrev-journal-title>JOSS</abbrev-journal-title>
+</journal-title-group>
+<issn publication-format="electronic">2475-9066</issn>
+<publisher>
+<publisher-name>Open Journals</publisher-name>
+</publisher>
+</journal-meta>
+<article-meta>
+<article-id pub-id-type="publisher-id">0</article-id>
+<article-id pub-id-type="doi">N/A</article-id>
+<title-group>
+<article-title>Resvidex: An R package for HRSV
+classification</article-title>
+</title-group>
+<contrib-group>
+<contrib contrib-type="author" corresp="yes">
+<contrib-id contrib-id-type="orcid">https://orcid.org/0000-0002-1429-4252</contrib-id>
+<name>
+<surname>Cacciabue</surname>
+<given-names>Marco</given-names>
+</name>
+<xref ref-type="aff" rid="aff-1"/>
+<xref ref-type="aff" rid="aff-2"/>
+<xref ref-type="corresp" rid="cor-1"><sup>*</sup></xref>
+</contrib>
+<contrib contrib-type="author">
+<contrib-id contrib-id-type="orcid">https://orcid.org/0009-0000-9741-1890</contrib-id>
+<name>
+<surname>Fenoglio</surname>
+<given-names>Nahuel Axel</given-names>
+</name>
+<xref ref-type="aff" rid="aff-3"/>
+</contrib>
+<contrib contrib-type="author">
+<contrib-id contrib-id-type="orcid">https://orcid.org/0009-0007-3163-2181</contrib-id>
+<name>
+<surname>Obregón</surname>
+<given-names>Melina</given-names>
+</name>
+<xref ref-type="aff" rid="aff-3"/>
+</contrib>
+<contrib contrib-type="author">
+<contrib-id contrib-id-type="orcid">https://orcid.org/0000-0001-7479-3064</contrib-id>
+<name>
+<surname>Goya</surname>
+<given-names>Stephanie</given-names>
+</name>
+<xref ref-type="aff" rid="aff-4"/>
+</contrib>
+<contrib contrib-type="author">
+<contrib-id contrib-id-type="orcid">https://orcid.org/0000-0002-6506-1635</contrib-id>
+<name>
+<surname>Viegas</surname>
+<given-names>Mariana</given-names>
+</name>
+<xref ref-type="aff" rid="aff-5"/>
+<xref ref-type="aff" rid="aff-1"/>
+</contrib>
+<aff id="aff-1">
+<institution-wrap>
+<institution>Consejo Nacional de Investigaciones Científicas y Técnicas
+(CONICET), Buenos Aires, Argentina.</institution>
+</institution-wrap>
+</aff>
+<aff id="aff-2">
+<institution-wrap>
+<institution>Departamento de Ciencias Básicas, Universidad Nacional de
+Luján, Luján, Argentina.</institution>
+</institution-wrap>
+</aff>
+<aff id="aff-3">
+<institution-wrap>
+<institution>Universidad Nacional de Luján, Luján,
+Argentina.</institution>
+</institution-wrap>
+</aff>
+<aff id="aff-4">
+<institution-wrap>
+<institution>Department of Laboratory Medicine and Pathology, University
+of Washington Medical Center, Seattle, WA, USA</institution>
+</institution-wrap>
+</aff>
+<aff id="aff-5">
+<institution-wrap>
+<institution>Laboratorio de Salud Pública, Facultad de Ciencias Exactas,
+Universidad Nacional de La Plata, La Plata, Buenos Aires,
+Argentina</institution>
+</institution-wrap>
+</aff>
+</contrib-group>
+<author-notes>
+<corresp id="cor-1">* E-mail: <email></email></corresp>
+</author-notes>
+<pub-date date-type="pub" publication-format="electronic" iso-8601-date="2024-02-28">
+<day>28</day>
+<month>2</month>
+<year>2024</year>
+</pub-date>
+<volume>¿VOL?</volume>
+<issue>¿ISSUE?</issue>
+<fpage>¿PAGE?</fpage>
+<permissions>
+<copyright-statement>Authors of papers retain copyright and release the
+work under a Creative Commons Attribution 4.0 International License (CC
+BY 4.0)</copyright-statement>
+<copyright-year>2022</copyright-year>
+<copyright-holder>The article authors</copyright-holder>
+<license license-type="open-access" xlink:href="https://creativecommons.org/licenses/by/4.0/">
+<license-p>Authors of papers retain copyright and release the work under
+a Creative Commons Attribution 4.0 International License (CC BY
+4.0)</license-p>
+</license>
+</permissions>
+<kwd-group kwd-group-type="author">
+<kwd>R</kwd>
+<kwd>Virology</kwd>
+<kwd>HRSV</kwd>
+<kwd>Classification</kwd>
+<kwd>Phyilogeny</kwd>
+</kwd-group>
+</article-meta>
+</front>
+<body>
+<sec id="summary">
+  <title>Summary</title>
+  <p>The human respiratory syncytial virus (HRSV) is one of the leading
+  causes of acute lower respiratory tract infection in children, elderly
+  and immunocompromised individuals. Below species level, there are two
+  antigenic groups: HRSV subgroup A (HRSV-A) and B (HRSV-B). Within each
+  subgroup, genotypes are defined based on statistically supported
+  phylogenetic clades that can be inferred with the second hypervariable
+  region (2HR) of the G gene, which encodes the attachment glycoprotein
+  and exhibits the highest genetic and antigenic variability.</p>
+  <p>Advanced machine learning techniques have proven to make accurate
+  predictions, using algorithms that reveal patterns in large datasets.
+  In the analysis of viral data, machine learning methods have been
+  recently implemented, for example, in: COVIDEX, a tool that classifies
+  complete genome nucleotide sequences of SARS‐CoV‐2 into lineages
+  (<xref alt="Cacciabue et al., 2022" rid="ref-cacciabue_covidex_2022" ref-type="bibr">Cacciabue
+  et al., 2022</xref>), or iNFINITY, another tool used to make human
+  influenza virus classification into subtypes and clades
+  (<xref alt="Cacciabue &amp; Marcone, 2023" rid="ref-cacciabue_infinity_2023" ref-type="bibr">Cacciabue
+  &amp; Marcone, 2023</xref>).</p>
+</sec>
+<sec id="statement-of-need">
+  <title>Statement of need</title>
+  <p><monospace>Resvidex</monospace> is a tool based on alignment‐free
+  machine learning for HRSV classification into subtypes and clades.
+  Resvidex is a web application that runs on an internet connection
+  without any installation and has a user‐friendly interface. It is
+  fast, sensitive, specific, and ready to implement. Additionally, it is
+  available to run locally for R and Rstudio users as an R package.</p>
+  <p>The overall classification algorithm that
+  <monospace>Resvidex</monospace> uses is divided into three phases:</p>
+  <list list-type="order">
+    <list-item>
+      <p>The first phase loads the user data in a multifasta format and
+      performs the k‐mer counting operation using the k‐mer package
+      (<xref alt="Wilkinson, 2018" rid="ref-kmer" ref-type="bibr">Wilkinson,
+      2018</xref>). Each k‐mer count is normalized over the k‐mer size
+      (k = 6) and the sequence length.</p>
+    </list-item>
+    <list-item>
+      <p>The second phase calls the ranger package
+      (<xref alt="Wright &amp; Ziegler, 2015" rid="ref-wright_ranger_2015" ref-type="bibr">Wright
+      &amp; Ziegler, 2015</xref>) predict function using a pre‐trained
+      random forest model and obtains a probability score based on the
+      rule of majority vote. From this, the app obtains the score for
+      each query sequence classification, the proportion of N bases in
+      the genome, and the genome length.</p>
+    </list-item>
+    <list-item>
+      <p>Finally, two tables are created, one showing the sequences that
+      passed all the quality checks and another with sequences that did
+      not pass some of the filter steps. These filters controls: that
+      each sequence obtained a probability score of 0.4 or more, that
+      the sequence length is close to the expected sequence length for
+      the classification model for a factor of no more that 50%, and
+      that the percentage of ambiguous bases in the sequence (N) is not
+      larger than 2%. A brief report can be produced including the
+      results table, date of analysis, and model information.</p>
+    </list-item>
+  </list>
+  <p><monospace>Resvidex</monospace> was designed to be used by
+  researchers who want to classify their samples of HRSV. It is used at
+  the moment as a part of a HRSV phylogeny investigation
+  (<xref alt="Goya et al., 2024" rid="ref-goya_unified_2024" ref-type="bibr">Goya
+  et al., 2024</xref>)</p>
+</sec>
+<sec id="acknowledgements">
+  <title>Acknowledgements</title>
+</sec>
+</body>
+<back>
+<ref-list>
+  <ref id="ref-goya_unified_2024">
+    <element-citation publication-type="report">
+      <person-group person-group-type="author">
+        <name><surname>Goya</surname><given-names>Stephanie</given-names></name>
+        <name><surname>Ruis</surname><given-names>Christopher</given-names></name>
+        <name><surname>Neher</surname><given-names>Richard A.</given-names></name>
+        <name><surname>Meijer</surname><given-names>Adam</given-names></name>
+        <name><surname>Aziz</surname><given-names>Ammar</given-names></name>
+        <name><surname>Hinrichs</surname><given-names>Angie S.</given-names></name>
+        <name><surname>Von Gottberg</surname><given-names>Anne</given-names></name>
+        <name><surname>Roemer</surname><given-names>Cornelius</given-names></name>
+        <name><surname>Amoako</surname><given-names>Daniel G.</given-names></name>
+        <name><surname>Acuña</surname><given-names>Dolores</given-names></name>
+        <name><surname>McBroome</surname><given-names>Jakob</given-names></name>
+        <name><surname>Otieno</surname><given-names>James R.</given-names></name>
+        <name><surname>Bhiman</surname><given-names>Jinal N.</given-names></name>
+        <name><surname>Everatt</surname><given-names>Josie</given-names></name>
+        <name><surname>Muñoz-Escalante</surname><given-names>Juan C.</given-names></name>
+        <name><surname>Ramaekers</surname><given-names>Kaat</given-names></name>
+        <name><surname>Duggan</surname><given-names>Kate</given-names></name>
+        <name><surname>Presser</surname><given-names>Lance D.</given-names></name>
+        <name><surname>Urbanska</surname><given-names>Laura</given-names></name>
+        <name><surname>Venter</surname><given-names>Marietjie</given-names></name>
+        <name><surname>Wolter</surname><given-names>Nicole</given-names></name>
+        <name><surname>Peret</surname><given-names>Teresa C. T.</given-names></name>
+        <name><surname>Salimi</surname><given-names>Vahid</given-names></name>
+        <name><surname>Potdar</surname><given-names>Varsha</given-names></name>
+        <name><surname>Borges</surname><given-names>Vítor</given-names></name>
+        <name><surname>Viegas</surname><given-names>Mariana</given-names></name>
+      </person-group>
+      <article-title>The unified proposal for classification of human respiratory syncytial virus below the subgroup level</article-title>
+      <publisher-name>Infectious Diseases (except HIV/AIDS)</publisher-name>
+      <year iso-8601-date="2024-02">2024</year><month>02</month>
+      <date-in-citation content-type="access-date"><year iso-8601-date="2024-02-27">2024</year><month>02</month><day>27</day></date-in-citation>
+      <uri>http://medrxiv.org/lookup/doi/10.1101/2024.02.13.24302237</uri>
+      <pub-id pub-id-type="doi">10.1101/2024.02.13.24302237</pub-id>
+    </element-citation>
+  </ref>
+  <ref id="ref-cacciabue_infinity_2023">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Cacciabue</surname><given-names>Marco</given-names></name>
+        <name><surname>Marcone</surname><given-names>Débora N.</given-names></name>
+      </person-group>
+      <article-title>INFINITy: A fast machine learning‐based application for human influenza A and B virus subtyping</article-title>
+      <source>Influenza and Other Respiratory Viruses</source>
+      <year iso-8601-date="2023-01">2023</year><month>01</month>
+      <date-in-citation content-type="access-date"><year iso-8601-date="2024-02-27">2024</year><month>02</month><day>27</day></date-in-citation>
+      <volume>17</volume>
+      <issue>1</issue>
+      <issn>1750-2640</issn>
+      <uri>https://onlinelibrary.wiley.com/doi/10.1111/irv.13096</uri>
+      <pub-id pub-id-type="doi">10.1111/irv.13096</pub-id>
+      <fpage>e13096</fpage>
+      <lpage></lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-wright_ranger_2015">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Wright</surname><given-names>Marvin N.</given-names></name>
+        <name><surname>Ziegler</surname><given-names>Andreas</given-names></name>
+      </person-group>
+      <article-title>Ranger: A Fast Implementation of Random Forests for High Dimensional Data in C++ and R</article-title>
+      <year iso-8601-date="2015">2015</year>
+      <date-in-citation content-type="access-date"><year iso-8601-date="2024-02-27">2024</year><month>02</month><day>27</day></date-in-citation>
+      <uri>https://arxiv.org/abs/1508.04409</uri>
+      <pub-id pub-id-type="doi">10.48550/ARXIV.1508.04409</pub-id>
+    </element-citation>
+  </ref>
+  <ref id="ref-cacciabue_covidex_2022">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Cacciabue</surname><given-names>Marco</given-names></name>
+        <name><surname>Aguilera</surname><given-names>Pablo</given-names></name>
+        <name><surname>Gismondi</surname><given-names>María Inés</given-names></name>
+        <name><surname>Taboga</surname><given-names>Oscar</given-names></name>
+      </person-group>
+      <article-title>Covidex: An ultrafast and accurate tool for SARS-CoV-2 subtyping</article-title>
+      <source>Infection, Genetics and Evolution</source>
+      <year iso-8601-date="2022-04">2022</year><month>04</month>
+      <date-in-citation content-type="access-date"><year iso-8601-date="2024-02-27">2024</year><month>02</month><day>27</day></date-in-citation>
+      <volume>99</volume>
+      <uri>https://linkinghub.elsevier.com/retrieve/pii/S1567134822000582</uri>
+      <pub-id pub-id-type="doi">10.1016/j.meegid.2022.105261</pub-id>
+      <fpage>105261</fpage>
+      <lpage></lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-kmer">
+    <element-citation>
+      <person-group person-group-type="author">
+        <name><surname>Wilkinson</surname><given-names>Shaun</given-names></name>
+      </person-group>
+      <article-title>Kmer: An r package for fast alignment-free clustering of biological sequences</article-title>
+      <source>GitHub repository</source>
+      <year iso-8601-date="2018">2018</year>
+      <uri>https://cran.r-project.org/package=kmer</uri>
+      <pub-id pub-id-type="doi">10.5281/zenodo.1227690</pub-id>
+    </element-citation>
+  </ref>
+</ref-list>
+</back>
+</article>

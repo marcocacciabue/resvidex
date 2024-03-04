@@ -7,37 +7,45 @@ tags:
   - HRSV
   - Classification
   - Phyilogeny
-date: "13 August 2017"
+date: "28 february 2024"
 output:
   html_document:
     df_print: paged
   pdf_document:
     latex_engine: xelatex
 authors:
-  - name: "Adrian M. Price-Whelan"
-    orcid: "0000-0000-0000-0000"
-    equal-contrib: yes
-    affiliation: 1, 2
-  - name: Author Without ORCID
-    equal-contrib: yes
-    affiliation: 2
-  - name: Author with no affiliation
+  - name: "Marco Cacciabue"
+    orcid: "0000-0002-1429-4252"
     corresponding: yes
+    equal-contrib: no
+    affiliation: 1, 2
+  - name: Nahuel Axel Fenoglio
+    orcid: "0009-0000-9741-1890"
+    equal-contrib: no
     affiliation: 3
-  - given-names: Ludwig
-    dropping-particle: van
-    surname: Beethoven
+  - name: Melina Obregón
+    orcid: "0009-0007-3163-2181"
     affiliation: 3
+  - name: Stephanie Goya
+    orcid: "0000-0001-7479-3064"
+    affiliation: 4
+  - name: Mariana Viegas
+    orcid: "0000-0002-6506-1635"
+    affiliation: 5, 1
+
 bibliography: paper.bib
-aas-doi: "10.3847/xxxxx <- update this with the DOI from AAS once you know it."
-aas-journal: "Astrophysical Journal <- The name of the AAS journal."
+
 affiliations:
-  - name: Lyman Spitzer, Jr. Fellow, Princeton University, USA
+  - name: Consejo Nacional de Investigaciones Científicas y Técnicas (CONICET), Buenos Aires, Argentina.
     index: 1
-  - name: Institution Name, Country
+  - name: Departamento de Ciencias Básicas, Universidad Nacional de Luján, Luján, Argentina.
     index: 2
-  - name: Independent Researcher, Country
+  - name: Universidad Nacional de Luján, Luján, Argentina.
     index: 3
+  - name: Department of Laboratory Medicine and Pathology, University of Washington Medical Center, Seattle, WA, USA
+    index: 4
+  - name: Laboratorio de Salud Pública, Facultad de Ciencias Exactas, Universidad Nacional de La Plata, La Plata, Buenos Aires, Argentina
+    index: 5
 ---
 
 # Summary
