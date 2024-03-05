@@ -1,0 +1,32 @@
+---
+title: "How to use ReSVidex"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How to use ReSVidex}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  dpi=300,
+  out.width = "100%"
+)
+app_name <- "ReSVidex"
+```
+
+```{r setup}
+library(resvidex)
+```
+
+## How to use the app
+
+The app offers the easiest way to use the package **`r app_name `**. You just need to 
+follow the next steps:
+
+```{r out.width = '70%', echo = FALSE}
+knitr::include_graphics("app_1.png")
+knitr::include_graphics("app_2.png")
+```
