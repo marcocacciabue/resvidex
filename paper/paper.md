@@ -1,6 +1,6 @@
 
 ---
-title: 'Resvidex: An R package for HRSV classification'
+title: 'ReSVidex: An R package for molecular classification of Respiratory Syncytial (HRSV) Virus sequences'
 tags:
   - R
   - Virology
