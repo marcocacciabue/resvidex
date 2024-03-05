@@ -1,6 +1,6 @@
 Package: resvidex
 Title: Molecular classification of Respiratory Syncytial Virus sequences
-Version: 0.1.0.9000
+Version: 0.0.0.9001
 Authors@R: c(
     person("Marco", "Cacciabue", , "marcocacciabue@yahoo.com", role = c("aut", "cre"),
            comment = c(ORCID = "http://orcid.org/0000-0002-1429-4252")),
