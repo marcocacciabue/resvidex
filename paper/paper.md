@@ -1,6 +1,6 @@
 
 ---
-title: 'Resvidex: An R package for HRSV classification'
+title: 'ReSVidex: An R package for molecular classification of Respiratory Syncytial (HRSV) Virus sequences'
 tags:
   - R
   - Virology
@@ -58,13 +58,10 @@ Advanced machine learning techniques have proven to make accurate predictions, u
 
 # Statement of need
 
-`Resvidex` is a tool based on alignment‐free machine learning for HRSV classification into subtypes and clades. Resvidex is a web application that runs on an internet connection without any installation and has a user‐friendly interface. It is fast, sensitive, specific, and ready to implement. Additionally, it is available to run locally for R and Rstudio users as an R package.
+`Resvidex` is a tool based on alignment‐free machine learning for HRSV classification into subtypes and clades. Resvidex is a web application that has a user‐friendly interface. It is fast, sensitive, specific, and ready to implement. It is available to run locally for R and Rstudio users as an R package. Additionally, it can be tested on an internet connection without any installation (only for small datasets).
 
-The overall classification algorithm that `Resvidex` uses is divided into three phases:
-
-1. The first phase loads the user data in a multifasta format and performs the k‐mer counting operation using the k‐mer package [@kmer]. Each k‐mer count is normalized over the k‐mer size (k = 6) and the sequence length.
-2. The second phase calls the ranger package [@wright_ranger_2015] predict function using a pre‐trained random forest model and obtains a probability score based on the rule of majority vote. From this, the app obtains the score for each query sequence classification, the proportion of N bases in the genome, and the genome length.
-3. Finally, two tables are created, one showing the sequences that passed all the quality checks and another with sequences that did not pass some of the filter steps. These filters controls: that each sequence obtained a probability score of 0.4 or more, that the sequence length is close to the expected sequence length for the classification model for a factor of no more that 50%, and that the percentage of ambiguous bases in the sequence (N) is not larger than 2%. A brief report can be produced including the results table, date of analysis, and model information.
+The overall classification algorithm that `Resvidex` uses is divided into three majors steps. In the initial phase, the user data is loaded in a multifasta format, and the k-mer counting operation is executed utilizing the k-mer package (citation). Each count of k-mers undergoes normalization based on both the k-mer size (k = 6) and the length of the sequence. Alternatively, the user can copy and paste the query sequence directly to the app.
+In the second step, the predict function from the ranger package (Wright et al., 2015) is invoked using a pre-trained random forest model. It calculates a probability score through a majority vote rule. Using this score, the application determines the classification score for each query sequence. Additionally,the app also calculates the proportion of N bases in the genome and the genome length. These values are important as divergencies from the expected values can impact notably over the classification results. On the final step, sequences are separated in two tables, one showing the sequences that passed all the quality checks and another with sequences that did not pass at least one of the filter steps. These filters ensure that each sequence achieves a probability score of 0.4 or higher, that the sequence length aligns closely with the expected length for the classification model (with a tolerance of up to 50%), and that the proportion of ambiguous bases (N) in the sequence does not exceed 2% of the genome length. Sequences that do not meet the necessary criteria should be analyzed manually with other methodologies (i.e. alignment-dependant tools) that may shield a more robust result. Although not recommended, the app allows the user to manually tweak these filters. Additionally, a concise report can be generated, incorporating the results table, date of analysis, and model information. 
 
 `Resvidex` was designed to be used by researchers who want to classify their samples of HRSV. It is used at the moment as a part of a HRSV phylogeny investigation [@goya_unified_2024]
 
