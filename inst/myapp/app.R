@@ -57,14 +57,13 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
 
    div(id="all",
       column(12, align = "center",
-             textAreaInput('SequenceData', 'Paste your sequences in FASTA format into the field below',
-                           value = "", placeholder = "",
-                           width = "70%",
-                           height="100px")),
-      column(12, align = "center",
              checkboxInput("FilePrueba", "Seleccion de Archivo de prueba", FALSE),
              conditionalPanel(
                condition = '!input.FilePrueba',
+               textAreaInput('SequenceData', 'Paste your sequences in FASTA format into the field below',
+                             value = "", placeholder = "",
+                             width = "70%",
+                             height="100px"),
                fileInput("file", label = ("Query file (multi-fasta format)"),
                          accept = c(".text",".fasta",".fas",".fasta")))),
       column(12, align = "center",
@@ -127,17 +126,17 @@ server <- shinyServer(function(input, output, session) {
   values <- reactiveValues(SequenceData_FILE = NULL)
 
 
-
   observeEvent(input$go, {
-    if(length(input$file)==0&(input$SequenceData=="")){
+    if(length(input$file)==0&(input$SequenceData=="")&(input$FilePrueba==FALSE)){
       showModal(modalDialog(
-        title = "Important message", easyClose = TRUE,
+       title = "Important message", easyClose = TRUE,
         "Please load the fasta file first and then press RUN.
 Also, remember that the file must NOT exceed 5 MB in size. Optionally, you can paste the
 sequence in the textbox"
-      ))}})
+     ))}})
 
   SequenceData_data<- observeEvent(input$SequenceData,{
+
     req(input$SequenceData)
     #gather input and set up temp file
     SequenceData_tmp <- input$SequenceData
@@ -160,7 +159,12 @@ sequence in the textbox"
 
   })
 
+
   data_reactive<- eventReactive(input$go,{
+    if (input$FilePrueba==TRUE){
+      values$SequenceData_FILE <-  system.file("extdata","test_dataset.fasta",
+                                        package = "resvidex", mustWork = TRUE)
+    }
     req(values$SequenceData_FILE)
     progress <- shiny::Progress$new()
     on.exit(progress$close())
@@ -168,8 +172,8 @@ sequence in the textbox"
     progress$inc(0.2, detail = paste("Reading fasta"))
 
 
-
     tmp<-values$SequenceData_FILE
+
     SequenceData<-ape::read.FASTA(tmp,type = "DNA")
 
     model <- model_reactive()$model
