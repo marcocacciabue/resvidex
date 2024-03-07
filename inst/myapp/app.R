@@ -8,11 +8,11 @@ library(DT)
 #library(plotly)
 library(shinyjs)
 options(shiny.maxRequestSize = 5*1024^2)
-library(rintrojs)
+#library(rintrojs)
 library(shinythemes)
 #library(magrittr)
 #library(dplyr)
-library(shinyjs)
+#library(shinyjs)
 #for mac, without this Rstudio crashes
 Sys.setenv(LIBGL_ALWAYS_SOFTWARE=1)
 #library(tibble)
@@ -27,7 +27,7 @@ library(shinyWidgets)
 
 ui <-   fluidPage(title = "ReSVidex whole genome version",
   useShinyjs(),
-  theme = shinytheme("spacelab"),
+  theme = shinythemes::shinytheme("spacelab"),
   includeScript("www/script.js"),
   includeCSS("www/style.css"),
   div( id="logo",
@@ -44,7 +44,7 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
       div( id="row_d_flex",
            div(id= "text-bg", "ReSVidex was developed by Marco Cacciabue and Stephanie Goya. Based on a machine learning classification model,
           it allows the user to identify the RSV subtype, genotype,
-          subgenotype and genetic lineage for each query sequence. This version of the app is for whole genome sequences only"))
+          subgenotype and genetic lineage for each query sequence."))
 
            )
 
@@ -87,11 +87,14 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
       column(12, align = "center",
              radioGroupButtons(
                inputId = "select",
-               label = "Choose the model according your SequenceData length sequences",
-               choices = c("FULL_GENOME", "FULL_GENOME_NEW"),
+               label = "Choose the model according to the length of your sequences",
+               choices = c("FULL_GENOME", "G"),
                status = "primary")),
       column(12, align = "center",
              actionButton("go", "RUN",class = "btn-info")),
+      column(12, align = "center",
+             textOutput("model")),
+      br(),
 
       fluidRow(),
       conditionalPanel(
@@ -169,7 +172,7 @@ sequence in the textbox"
     tmp<-values$SequenceData_FILE
     SequenceData<-ape::read.FASTA(tmp,type = "DNA")
 
-   model <- model_reactive()$model
+    model <- model_reactive()$model
 
 
     #Calculate k-mer counts from SequenceData sequences
@@ -192,7 +195,7 @@ sequence in the textbox"
 
   data_predicted<-reactive({
     # req(values$SequenceData_FILE)
-    model <- resvidex::FULL_GENOME
+    model <- model_reactive()$model
     data_out<-data_reactive()$data_out
 
     data_out<-resvidex::QualityControl(model=model,
@@ -243,8 +246,8 @@ sequence in the textbox"
 
   output$table <- DT::renderDataTable({
 
-    col2<-"#7AC5CD"
-      col<-"#FF8C00"
+    col<-"#7AC5CD"
+      col2<-"#FF8C00"
 
       table<-table_pass()
 
@@ -283,8 +286,8 @@ sequence in the textbox"
 
   output$table_reject <- DT::renderDataTable({
 
-    col2<-"#7AC5CD"
-      col<-"#FF8C00"
+      col<-"#7AC5CD"
+      col2<-"#FF8C00"
 
       table<-table_reject()
 
@@ -318,49 +321,6 @@ sequence in the textbox"
         formatStyle("N","N_QC",backgroundColor = styleEqual(c(0, 1), c(col2, col)))%>%
         formatStyle("Probability","Probability_QC",backgroundColor = styleEqual(c(0, 1), c(col2, col)))
   })
-  # output$plot2 <- renderPlotly({
-  #   Fast_tree_reactive()
-  #
-  # })
-
-
-
-# model_table<-reactive({
-#   model1<-model_reactive()$model
-#   model1_data<-data.frame(Model=model1$info,date=model1$date,trees=model1$num.trees,Oob= round(model1$prediction.error,4))
-#
-#   model_data
-# })
-#
-# output$table2 <- DT::renderDataTable({
-#   col<-brewer.pal(5,"Blues")
-#   col2<-brewer.pal(5,"Reds")
-#
-#   table<-model_table()
-#   datatable(table,selection = 'single',
-#             options = list(
-#               columnDefs = list(list(targets = c(5,7), visible = FALSE)),
-#               dom = 'Bfrtip',
-#               lengthMenu = list(c(5, 15, -1), c('5', '15', 'All')),
-#               pageLength = 15,
-#               buttons =
-#                 list('copy', 'print', list(
-#                   extend = 'collection',
-#                   buttons = list(
-#                     list(extend = 'csv', filename = paste(input$file[1,1],"ReSVidex_results"),sep=""),
-#                     list(extend = 'excel', filename = paste(input$file[1,1],"ReSVidex_results"),sep=""),
-#                     list(extend = 'pdf', filename = paste(input$file[1,1],"ReSVidex_results"),sep="")),
-#                   text = 'Download'
-#                 )
-#                 )
-#             ))%>% formatStyle("Rambaut","FLAG",
-#                               backgroundColor = styleEqual(c(0, 1), c(col[1], col[3])))%>%
-#                             formatStyle("Length","Length_QC",
-#                              backgroundColor = styleEqual(c(0, 1), c(col2[3], col2[1])))%>%
-#                             formatStyle("N","N_QC",backgroundColor = styleEqual(c(0, 1), c(col2[3], col2[1])))
-#
-#
-# })
 
 output$report <- downloadHandler(
 
@@ -383,11 +343,34 @@ output$report <- downloadHandler(
   }
 )
 
+info_model<-reactive({
+  req(input$select)
+  model_data<-  model_reactive()$model
+  model1_data<-data.frame(Model=model_data$info,
+                          date=model_data$date,
+                          trees=model_data$num.trees,
+                          length=model_data$genome_size,
+                          Oob= round(model_data$prediction.error,4))
+  return(model1_data)
+
+})
+output$model <- renderText({
+  req(input$go)
+  model_data<-  model_reactive()$model
+  paste0("You have run the app with the ",
+         model_data$info,
+         " model, version ",
+         model_data$date,
+         " designed for sequences close to ",
+         model_data$genome_size,
+         " nt long.")
+})
+
 model_reactive <- eventReactive(input$select,{
   if (input$select=="FULL_GENOME"){
     model <- resvidex::FULL_GENOME}
   else{
-      model <- resvidex::FULL_GENOME_NEW
+      model <- resvidex::G
     }
   list(model=model)
 })

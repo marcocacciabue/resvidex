@@ -1,0 +1,15 @@
+---
+title: "Got the results! What now?"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Got the results! What now?}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```

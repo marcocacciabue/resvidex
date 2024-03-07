@@ -141,7 +141,7 @@ QualityControl<-function(data,
   data$N_QC<-(data$N<N_value)
 
   if ("RSV_full_genome"==model$info){
-    data$Length_QC<-(data$Length>(1-Length_value)*15000)&(data$Length<(1+Length_value)*15000)
+    data$Length_QC<-(data$Length>(1-Length_value)*model$genome_size)&(data$Length<(1+Length_value)*model$genome_size)
   }
 
   data$Probability_QC<-data$Probability>QC_value
