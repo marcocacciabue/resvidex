@@ -76,3 +76,100 @@ PredictedData <- Quality_filter(PredictedData)
 
 PredictedData
 ```
+
+    ## :whale: Docker images available
+
+    ### **resvidex** as a shiny app in docker
+
+    Another way to run **resvidex** as a shiny app is to use the docker
+    image. Follow these steps:
+
+    1.  If you don´t already have it, install docker:
+        <https://www.docker.com/get-started>.
+
+    2.  Open a terminal and run the following:
+
+    ``` bash
+    docker pull cacciabue/resvidex:shiny
+
+and wait for the image to download. You only have to run this command
+the first time, or whenever you want to check for updates.
+
+3.  Once the downloading is complete run the following:
+
+``` bash
+docker run -d --rm -p 3838:3838 cacciabue/resvidex:shiny
+```
+
+4.  Finally, open your favorite browser and go to
+    <http://localhost:3838/>
+5.  The app should be up and running in your browser. Load the fasta
+    file and press RUN.
+6.  You can save a report using the corresponding button.
+
+### **resvidex** in a docker image with all dependecies allready installed
+
+For more reproducibility a fully operational environment is available to
+work directly in docker:
+
+1.  If you don´t already have it, install docker:
+    <https://www.docker.com/get-started>.
+
+2.  Open a terminal, go to the directory where the fasta files are
+    stored and run the following:
+
+``` bash
+docker pull cacciabue/resvidex:cli
+```
+
+3.  Once the downloading is complete run the following:
+
+``` bash
+#for WINDOWS 
+docker run -it --rm --volume %cd%:/nexus cacciabue/resvidex:cli
+
+#for unix/MAC
+docker run -it --rm --volume $(pwd):/nexus cacciabue/resvidex:cli
+```
+
+4.  Now you can run
+
+``` bash
+setwd('nexus')
+
+#Call the 'resvidex' library
+library(resvidex)
+
+# Indicate the file path to the fasta file to use.If your file is in your working directory you need to simply indicate the file name. In this case, we use a test file provided with the package itself. 
+
+file_path<-system.file("extdata","test_dataset.fasta",package="resvidex")
+
+# Use the wrapper function. You can pass other arguments
+Classification<-Classify(inputFile=file_path,model=FULL_GENOME)
+Classification
+
+#if you want to export the prediction
+utils::write.csv2(Classification,'Classification_file.csv')
+
+# This command saves a file in the working directory as "Results.csv" by default. You can change the name file setting the "outputFile" parameter.
+
+# To exit the container just run
+
+q()
+```
+
+5.  Alternatively you can perform step 3 and 4 in one command like this:
+
+``` bash
+
+#for WINDOWS 
+
+docker run --rm --volume %cd%:/nexus cacciabue/resvidex:cli R -e "setwd('nexus');library('resvidex');Classification<-Classify(inputFile='test_dataset.fasta',model=FULL_GENOME);utils::write.csv2(Classification,'Classification_file.csv')"
+
+#for unix/MAC
+
+docker run --rm --volume $(pwd):/nexus cacciabue/resvidex:cli R -e "setwd('nexus');library('resvidex');Classification<-Classify(inputFile='test_dataset.fasta',model=FULL_GENOME);utils::write.csv2(Classification,'Classification_file.csv')"
+
+
+# USER SHOULD CHANGE test_dataset.fasta for the correct file name
+```
