@@ -77,20 +77,21 @@ PredictedData <- Quality_filter(PredictedData)
 PredictedData
 ```
 
-    ## :whale: Docker images available
+## :whale: Docker images available
 
-    ### **resvidex** as a shiny app in docker
+### **ReSVidex** as a shiny app in docker
 
-    Another way to run **resvidex** as a shiny app is to use the docker
-    image. Follow these steps:
+Another way to run **ReSVidex** as a shiny app is to use the docker
+image. Follow these steps:
 
-    1.  If you don´t already have it, install docker:
-        <https://www.docker.com/get-started>.
+1.  If you don´t already have it, install docker:
+    <https://www.docker.com/get-started>.
 
-    2.  Open a terminal and run the following:
+2.  Open a terminal and run the following:
 
-    ``` bash
-    docker pull cacciabue/resvidex:shiny
+``` bash
+docker pull cacciabue/resvidex:shiny
+```
 
 and wait for the image to download. You only have to run this command
 the first time, or whenever you want to check for updates.
@@ -107,7 +108,7 @@ docker run -d --rm -p 3838:3838 cacciabue/resvidex:shiny
     file and press RUN.
 6.  You can save a report using the corresponding button.
 
-### **resvidex** in a docker image with all dependecies allready installed
+### **ReSVidex** in a docker image with all dependecies allready installed
 
 For more reproducibility a fully operational environment is available to
 work directly in docker:
