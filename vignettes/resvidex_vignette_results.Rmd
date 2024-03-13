@@ -14,3 +14,20 @@ knitr::opts_chunk$set(
 )
 ```
 
+Whether you use the app or you use the command line interface, you will have the results as a table. You can always export this as a spreadsheet. In this case we use the test data set from the package:
+
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("app_5.png")
+```
+
+What's the information the spreadsheet conveys?
+
+* **Label**: name of the sequence.
+* **Clade**: According to the model used, the lineage which the sequence has more likelihood or probability of belonging to.
+* **Probability**: From 0 to 100, the chances of belonging to that clade. The closer this number is to 100 the better. Results below 20 are flagged as low quality (meaning that the sequences probably are not RSV related).
+* **Length**: Number of bases or length the sequence has. This should be closer to the expected genome length as possible to obtain the best results.
+* **Length_QC**:TRUE, if the length meets the criteria, FALSE if not. This criteria can be changed during setup.
+* **N**: Number of ambiguous bases the sequence has.
+* **N_QC**: TRUE, if the number of N meets the criteria, FALSE if not. This criteria can be changed during setup.
+* **Probability_QC**: TRUE, if the probability meets the criteria, FALSE if not. This criteria can be changed during setup.
+
