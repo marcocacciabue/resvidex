@@ -56,21 +56,31 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
      br(),
 
    div(id="all",
-      column(12, align = "center",
-             checkboxInput("FilePrueba", "Seleccion de Archivo de prueba", FALSE),
+      column(6, align = "right",
+             actionButton("prv", "Prev", class = "btn-info")),
+      column(6, align = "left",
+             actionButton("nxt", "Next", class = "btn-info")),
+      textOutput("salida"),
+      column(6,   align = "left",
              conditionalPanel(
                condition = '!input.FilePrueba',
-               textAreaInput('SequenceData', 'Paste your sequences in FASTA format into the field below',
+               textAreaInput('SequenceData', '1. Paste your sequences in FASTA format into the field below',
                              value = "", placeholder = "",
-                             width = "70%",
-                             height="100px"),
-               fileInput("file", label = ("Query file (multi-fasta format)"),
-                         accept = c(".text",".fasta",".fas",".fasta")))),
-      column(12, align = "center",
-             textInput("user", "User name (optional)", "anonymous")),
-      column(12, align = "center",
+                             width = "100%"))),
+      column(6,  align = "left",
+             conditionalPanel(
+               condition = '!input.FilePrueba',
+             fileInput("file", label = ("2. Query file (multi-fasta format)"),
+                         accept = c(".text",".fasta",".fas",".fasta"),width = "100%"))),
+
+      column(12,  align = "center",
+             checkboxInput("FilePrueba", "3. Use example file.", FALSE,
+                           width = "100%")),
+
+             textInput("user", "User name (optional)", "anonymous"),
+      column(8, align = "center",
              checkboxInput("advanceOptions", "Advanced options", FALSE)),
-      column(12, align = "center",
+      column(6, align = "center",
              conditionalPanel(condition='input.advanceOptions',
                               checkboxInput("qualityfilter", "Classify even if quality of sequence is low? (Not recommended)", FALSE),
                               sliderInput("QC_value", "Probability threshold (default 0.4):",
@@ -123,7 +133,35 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
 
 server <- shinyServer(function(input, output, session) {
 
-  values <- reactiveValues(SequenceData_FILE = NULL)
+  values <- reactiveValues(SequenceData_FILE = NULL,
+                           step = 1)
+
+  observeEvent(input$nxt, {
+    if (values$step < 5){
+      values$step <- values$step + 1}
+  })
+
+  observeEvent(input$prv, {
+    if (values$step > 1) {
+      values$step <- values$step - 1}
+  })
+
+ observe({
+   if(values$step > 1){
+     shinyjs::hide(id = "SequenceData")
+     shinyjs::show(id = "file")
+
+     FilePrueba
+   }else{
+     shinyjs::show(id = "SequenceData")
+     shinyjs::hide(id = "file")
+   }
+ })
+
+
+  output$salida <- renderText({
+    values$step
+  })
 
 
   observeEvent(input$go, {
