@@ -30,6 +30,7 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
   theme = shinythemes::shinytheme("spacelab"),
   includeScript("www/script.js"),
   includeCSS("www/style.css"),
+
   div( id="logo",
        img(src="ReSVidex.png",class="logo"),
 
@@ -56,42 +57,22 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
      br(),
 
    div(id="all",
-      column(6, align = "right",
-             actionButton("prv", "Prev", class = "btn-info")),
-      column(6, align = "left",
-             actionButton("nxt", "Next", class = "btn-info")),
-      textOutput("salida"),
+
       column(6,   align = "left",
              conditionalPanel(
                condition = '!input.FilePrueba',
-               textAreaInput('SequenceData', '1. Paste your sequences in FASTA format into the field below',
+               textAreaInput('SequenceData', 'You can paste your sequences in FASTA format into the field below',
                              value = "", placeholder = "",
                              width = "100%"))),
       column(6,  align = "left",
              conditionalPanel(
                condition = '!input.FilePrueba',
-             fileInput("file", label = ("2. Query file (multi-fasta format)"),
+             fileInput("file", label = ("Or you can load a query file (multi-fasta format)"),
                          accept = c(".text",".fasta",".fas",".fasta"),width = "100%"))),
 
       column(12,  align = "center",
-             checkboxInput("FilePrueba", "3. Use example file.", FALSE,
+             checkboxInput("FilePrueba", "You can also use an example file.", FALSE,
                            width = "100%")),
-
-             textInput("user", "User name (optional)", "anonymous"),
-      column(8, align = "center",
-             checkboxInput("advanceOptions", "Advanced options", FALSE)),
-      column(6, align = "center",
-             conditionalPanel(condition='input.advanceOptions',
-                              checkboxInput("qualityfilter", "Classify even if quality of sequence is low? (Not recommended)", FALSE),
-                              sliderInput("QC_value", "Probability threshold (default 0.4):",
-                                          min = 0.2, max = 1,
-                                          value = 0.4, step = 0.05),
-                              sliderInput("N_value", "Percentage of acceptable ambiguous bases (default 2):",
-                                          min = 0.1, max = 10,
-                                          value = 2, step = 0.05),
-                              sliderInput("Length_value", "Proportion of difference to the expected sequence length (default 0.5): :",
-                                          min = 0.1, max = 1,
-                                          value = 0.5, step = 0.05)),),
 
       column(12, align = "center",
              radioGroupButtons(
@@ -100,7 +81,32 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
                choices = c("FULL_GENOME", "G"),
                status = "primary")),
       column(12, align = "center",
+             checkboxInput("advanceOptions", "Advanced options", FALSE)),
+      column(12, align = "center",
+             conditionalPanel(
+               condition='input.advanceOptions',
+               textInput("user", "User name (optional)", "anonymous"),
+               checkboxInput("qualityfilter", "Classify even if quality of sequence is low? (Not recommended)", FALSE),
+               sliderInput("QC_value", "Probability threshold (default 0.4):",
+                           min = 0.2, max = 1,
+                           value = 0.4, step = 0.05),
+               sliderInput("N_value", "Percentage of acceptable ambiguous bases (default 2):",
+                           min = 0.1, max = 10,
+                           value = 2, step = 0.05),
+               sliderInput("Length_value", "Proportion of difference to the expected sequence length (default 0.5): :",
+                           min = 0.1, max = 1,
+                           value = 0.5, step = 0.05)),),
+
+      column(12, align = "center",
              actionButton("go", "RUN",class = "btn-info")),
+      column(4, align = "right",uiOutput("step_button_1")),
+      column(4, align = "center",uiOutput("step_button_2")),
+      column(4, align = "left",uiOutput("step_button_3")),
+      column(6, align = "right",
+             actionButton("prv", "Prev", class = "btn-info")),
+      div(id="hola",
+          column(6, align = "left",
+             actionButton("nxt", "Next", class = "btn-info"))),
       column(12, align = "center",
              textOutput("model")),
       br(),
@@ -135,33 +141,110 @@ server <- shinyServer(function(input, output, session) {
 
   values <- reactiveValues(SequenceData_FILE = NULL,
                            step = 1)
+  output$step_button_1 <- renderUI({
+    if(values$step==1){
+      actionButton("step_button_1",
+                 label = 1,
+                 class = "btn-success")}else{
+                   actionButton("step_button_1",
+                                label = 1)
+
+                 }
+  })
+
+  output$step_button_2 <- renderUI({
+    if(values$step==2){
+      actionButton("step_button_2",
+                   label = 2,
+                   class = "btn-success")}else{
+                     actionButton("step_button_2",label = 2,)
+
+                   }
+  })
+  output$step_button_3 <- renderUI({
+    if(values$step==3){
+      actionButton("step_button_3",
+                   label = 3,
+                   class = "btn-success")}else{
+                     actionButton("step_button_3",
+                                  label = 3)
+
+                   }
+  })
+
+
+
+  observeEvent(input$step_button_1, {
+    values$step=1
+  })
+  observeEvent(input$step_button_2, {
+    values$step=2
+  })
+  observeEvent(input$step_button_3, {
+    values$step=3
+  })
 
   observeEvent(input$nxt, {
-    if (values$step < 5){
+    if (values$step < 3){
       values$step <- values$step + 1}
+
   })
+
 
   observeEvent(input$prv, {
     if (values$step > 1) {
       values$step <- values$step - 1}
+
   })
 
+  observeEvent(values$step,{
+  runjs('
+      document.getElementById("prv").scrollIntoView();
+    ')
+  })
+  observeEvent(input$advanceOptions,{
+    runjs('
+      document.getElementById("prv").scrollIntoView();
+    ')
+  })
  observe({
-   if(values$step > 1){
-     shinyjs::hide(id = "SequenceData")
-     shinyjs::show(id = "file")
 
-     FilePrueba
-   }else{
-     shinyjs::show(id = "SequenceData")
-     shinyjs::hide(id = "file")
+  if(values$step > 1){
+    shinyjs::hide(id = "SequenceData")
+   shinyjs::hide(id = "file")
+   shinyjs::hide(id = "FilePrueba")
+
+  }else{
+   shinyjs::show(id = "SequenceData")
+  shinyjs::show(id = "file")
+  shinyjs::show(id = "FilePrueba")
+
+  }
+   if(values$step == 1){
+     shinyjs::hide(id = "select")
+     shinyjs::hide(id = "advanceOptions")
+
    }
+   if(values$step == 2){
+     shinyjs::show(id = "select")
+     shinyjs::show(id = "advanceOptions")
+
+   }
+
+
+   if(values$step == 3){
+     shinyjs::show(id = "go")
+     shinyjs::hide(id = "advanceOptions")
+
+
+   }else{
+     shinyjs::hide(id = "go")
+
+   }
+
+
  })
 
-
-  output$salida <- renderText({
-    values$step
-  })
 
 
   observeEvent(input$go, {
