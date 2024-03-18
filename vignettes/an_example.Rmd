@@ -1,0 +1,26 @@
+---
+title: "An example..."
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{An example...}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+I downloaded a fasta file with multiple sequences of RSV virus from (https://www.ncbi.nlm.nih.gov/). Using the filters from the page, I selected mostly sequences that passes the ReSVidex longitud filter, but a couple of them won't.
+
+Let's see how ReSVidex runs this dataset:
+
+After creating a new R script and loading the ReSVidex library i load the dataset, using
+```
+```
+
+```{r setup}
+library(resvidex)
+```
