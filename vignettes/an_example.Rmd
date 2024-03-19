@@ -13,14 +13,49 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-I downloaded a fasta file with multiple sequences of RSV virus from (https://www.ncbi.nlm.nih.gov/). Using the filters from the page, I selected mostly sequences that passes the ReSVidex longitud filter, but a couple of them won't.
 
-Let's see how ReSVidex runs this dataset:
+I downloaded a fasta file with multiple sequences of RSV virus from (https://www.ncbi.nlm.nih.gov/).
 
-After creating a new R script and loading the ReSVidex library i load the dataset, using
+## Let's see how ReSVidex runs this dataset:
+
+First I created a new R script and set the folder where the fasta is saved, as the working directory.
+
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("example_2.gif")
 ```
-```
 
-```{r setup}
+Loaded the ReSVidex library
+
+```
 library(resvidex)
 ```
+
+Loaded the name of the fasta file, in this case "data_set.fasta"
+
+```
+file<-"data_set.fasta"
+```
+
+Used the classification function from the ReSVidex package and saved it
+
+```
+Classification_Print<-Classify(inputFile=file, model=FULL_GENOME)
+```
+
+Visualized on the console the dataframe created by the function writing "Classification_print" on the script and running the line (i could instead write the line in the console itself).
+
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("example_1.png")
+```
+
+Saved the results as a cvs file to open with an excel type program. This file is always saved in the same folder set as working directory.
+
+```
+utils::write.csv2(Classification_Print,"Classification_file.csv")
+```
+
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("example_3.png")
+```
+
+As we can see, most of the sequences didn't pass the probability check, and couldn't be classified in our model.
