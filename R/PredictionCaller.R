@@ -35,7 +35,7 @@
 
 PredictionCaller<-function(NormalizedData,
                            model,
-                           QC_unknown=0.2){
+                           QC_unknown=0.3){
 
    if (is.null(NormalizedData) | missing(NormalizedData)){
     stop("'NormalizedData' must be indicated")
@@ -88,7 +88,7 @@ PredictionCaller<-function(NormalizedData,
 #' QualityControl
 #'
 #' @param data data.frame obtained with [PredictionCaller()]
-#' @param QC_value numeric value from 0 to 1. (default = 0.4)
+#' @param QC_value numeric value from 0.3 to 1. (default = 0.4)
 #' @param Length_value numeric value from 0 to 1. Proportion of difference to the expected sequence length. (default = 0.5)
 #' @param N_value numeric value from 0 to 100. Percentage of acceptable ambiguous bases. (default = 2)
 #' @inheritParams Kcounter

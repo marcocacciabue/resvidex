@@ -4,7 +4,7 @@
 \alias{PredictionCaller}
 \title{PredictionCaller}
 \usage{
-PredictionCaller(NormalizedData, model, QC_unknown = 0.2)
+PredictionCaller(NormalizedData, model, QC_unknown = 0.3)
 }
 \arguments{
 \item{NormalizedData}{A list of 3 elements: normalized k-mer counts, genome length and contents of undefined bases.Produced by the \code{\link[=Kcounter]{Kcounter()}} function}

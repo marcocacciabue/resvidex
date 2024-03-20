@@ -9,7 +9,7 @@ QualityControl(data, QC_value = 0.4, Length_value = 0.5, N_value = 2, model)
 \arguments{
 \item{data}{data.frame obtained with \code{\link[=PredictionCaller]{PredictionCaller()}}}
 
-\item{QC_value}{numeric value from 0 to 1. (default = 0.4)}
+\item{QC_value}{numeric value from 0.3 to 1. (default = 0.4)}
 
 \item{Length_value}{numeric value from 0 to 1. Proportion of difference to the expected sequence length. (default = 0.5)}
 
