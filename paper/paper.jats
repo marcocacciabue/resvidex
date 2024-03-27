@@ -18,8 +18,8 @@
 <article-id pub-id-type="publisher-id">0</article-id>
 <article-id pub-id-type="doi">N/A</article-id>
 <title-group>
-<article-title>Resvidex: An R package for HRSV
-classification</article-title>
+<article-title>ReSVidex: An R package for molecular classification of
+Respiratory Syncytial (HRSV) Virus sequences</article-title>
 </title-group>
 <contrib-group>
 <contrib contrib-type="author" corresp="yes">
@@ -132,6 +132,9 @@ a Creative Commons Attribution 4.0 International License (CC BY
 <body>
 <sec id="summary">
   <title>Summary</title>
+</sec>
+<sec id="statement-of-need">
+  <title>Statement of need</title>
   <p>The human respiratory syncytial virus (HRSV) is one of the leading
   causes of acute lower respiratory tract infection in children, elderly
   and immunocompromised individuals. Below species level, there are two
@@ -140,61 +143,71 @@ a Creative Commons Attribution 4.0 International License (CC BY
   phylogenetic clades that can be inferred with the second hypervariable
   region (2HR) of the G gene, which encodes the attachment glycoprotein
   and exhibits the highest genetic and antigenic variability.</p>
-  <p>Advanced machine learning techniques have proven to make accurate
-  predictions, using algorithms that reveal patterns in large datasets.
-  In the analysis of viral data, machine learning methods have been
-  recently implemented, for example, in: COVIDEX, a tool that classifies
-  complete genome nucleotide sequences of SARS‐CoV‐2 into lineages
-  (<xref alt="Cacciabue et al., 2022" rid="ref-cacciabue_covidex_2022" ref-type="bibr">Cacciabue
-  et al., 2022</xref>), or iNFINITY, another tool used to make human
-  influenza virus classification into subtypes and clades
+  <p>Clade classification typically involves analyzing gene sequences
+  from current strains alongside reference sequences using phylogenetic
+  analysis. This process is often time-consuming and necessitates
+  specialized training and equipment. Alternatively, advanced machine
+  learning methodologies have demonstrated their ability to provide
+  precise predictions by employing algorithms capable of uncovering
+  intricate patterns within relevant viral datasets
   (<xref alt="Cacciabue &amp; Marcone, 2023" rid="ref-cacciabue_infinity_2023" ref-type="bibr">Cacciabue
-  &amp; Marcone, 2023</xref>).</p>
-</sec>
-<sec id="statement-of-need">
-  <title>Statement of need</title>
-  <p><monospace>Resvidex</monospace> is a tool based on alignment‐free
-  machine learning for HRSV classification into subtypes and clades.
-  Resvidex is a web application that runs on an internet connection
-  without any installation and has a user‐friendly interface. It is
-  fast, sensitive, specific, and ready to implement. Additionally, it is
-  available to run locally for R and Rstudio users as an R package.</p>
+  &amp; Marcone, 2023</xref>,humayun_computational_2021,Wang_2020).</p>
+  <p>Here we introduce <monospace>Resvidex</monospace>, an open-source R
+  package (R Core Team
+  (<xref alt="2023" rid="ref-r-2023" ref-type="bibr">2023</xref>)),
+  dedicated to aid researchers in classifying HRSV sequences (full
+  genome or G gene) at the lower levels of resolution in an easy, fast
+  and reproducible way. <monospace>Resvidex</monospace> is a tool based
+  on alignment‐free machine learning for HRSV classification into
+  subtypes and clades. It is fast, sensitive, specific, and ready to
+  implement, as it is available to run locally for R users. It also
+  includes a web application (Chang et al.
+  (<xref alt="2023" rid="ref-shiny" ref-type="bibr">2023</xref>)) that
+  has a user‐friendly interface. Additionally, it can be tested on an
+  internet connection without any installation (only for small
+  datasets).</p>
   <p>The overall classification algorithm that
-  <monospace>Resvidex</monospace> uses is divided into three phases:</p>
-  <list list-type="order">
-    <list-item>
-      <p>The first phase loads the user data in a multifasta format and
-      performs the k‐mer counting operation using the k‐mer package
-      (<xref alt="Wilkinson, 2018" rid="ref-kmer" ref-type="bibr">Wilkinson,
-      2018</xref>). Each k‐mer count is normalized over the k‐mer size
-      (k = 6) and the sequence length.</p>
-    </list-item>
-    <list-item>
-      <p>The second phase calls the ranger package
-      (<xref alt="Wright &amp; Ziegler, 2015" rid="ref-wright_ranger_2015" ref-type="bibr">Wright
-      &amp; Ziegler, 2015</xref>) predict function using a pre‐trained
-      random forest model and obtains a probability score based on the
-      rule of majority vote. From this, the app obtains the score for
-      each query sequence classification, the proportion of N bases in
-      the genome, and the genome length.</p>
-    </list-item>
-    <list-item>
-      <p>Finally, two tables are created, one showing the sequences that
-      passed all the quality checks and another with sequences that did
-      not pass some of the filter steps. These filters controls: that
-      each sequence obtained a probability score of 0.4 or more, that
-      the sequence length is close to the expected sequence length for
-      the classification model for a factor of no more that 50%, and
-      that the percentage of ambiguous bases in the sequence (N) is not
-      larger than 2%. A brief report can be produced including the
-      results table, date of analysis, and model information.</p>
-    </list-item>
-  </list>
+  <monospace>Resvidex</monospace> uses is divided into three majors
+  steps. In the initial phase, the user data is loaded in a multifasta
+  format, and the k-mer counting operation is executed utilizing the
+  k-mer package (Wilkinson
+  (<xref alt="2018" rid="ref-kmer" ref-type="bibr">2018</xref>)). Each
+  count of k-mers undergoes normalization based on both the k-mer size
+  (k = 6) and the length of the sequence. Alternatively, the user can
+  copy and paste the query sequence directly to the app. In the second
+  step, the predict function from the ranger package (Wright et al.,
+  2015) is invoked using a pre-trained random forest model. It
+  calculates a probability score through a majority vote rule. Using
+  this score, the application determines the classification score for
+  each query sequence. Additionally,the app also calculates the
+  proportion of N bases in the genome and the genome length. These
+  values are important as divergencies from the expected values can
+  impact notably over the classification results. On the final step,
+  sequences are separated in two tables, one showing the sequences that
+  passed all the quality checks and another with sequences that did not
+  pass at least one of the filter steps. These filters ensure that each
+  sequence achieves a probability score of 0.4 or higher, that the
+  sequence length aligns closely with the expected length for the
+  classification model (with a tolerance of up to 50%), and that the
+  proportion of ambiguous bases (N) in the sequence does not exceed 2%
+  of the genome length. Sequences that do not meet the necessary
+  criteria should be analyzed manually with other methodologies
+  (i.e. alignment-dependant tools) that may shield a more robust result.
+  Although not recommended, the app allows the user to manually tweak
+  these filters. Additionally, a concise report can be generated,
+  incorporating the results table, date of analysis, and model
+  information.</p>
   <p><monospace>Resvidex</monospace> was designed to be used by
-  researchers who want to classify their samples of HRSV. It is used at
-  the moment as a part of a HRSV phylogeny investigation
-  (<xref alt="Goya et al., 2024" rid="ref-goya_unified_2024" ref-type="bibr">Goya
-  et al., 2024</xref>)</p>
+  researchers who want to classify their samples of HRSV according to
+  the Goya et. al. proposal (Goya et al.
+  (<xref alt="2024" rid="ref-goya_unified_2024" ref-type="bibr">2024</xref>)).
+  <monospace>Resvidex</monospace> comes with two classification models:
+  one for whole genome sequences (FULL_GENOME for sequence length of
+  aproximately 15000 bp) and other for the G coding sequence (G for
+  aproximately 900 bp). The HRSV classification comprises 41 clades or
+  genetic groups: 25 for subgroup A and 16 for subgroup B. # How to use
+  the aplication
+  <named-content content-type="image">lalalalala</named-content></p>
 </sec>
 <sec id="acknowledgements">
   <title>Acknowledgements</title>
@@ -259,38 +272,6 @@ a Creative Commons Attribution 4.0 International License (CC BY
       <lpage></lpage>
     </element-citation>
   </ref>
-  <ref id="ref-wright_ranger_2015">
-    <element-citation publication-type="article-journal">
-      <person-group person-group-type="author">
-        <name><surname>Wright</surname><given-names>Marvin N.</given-names></name>
-        <name><surname>Ziegler</surname><given-names>Andreas</given-names></name>
-      </person-group>
-      <article-title>Ranger: A Fast Implementation of Random Forests for High Dimensional Data in C++ and R</article-title>
-      <year iso-8601-date="2015">2015</year>
-      <date-in-citation content-type="access-date"><year iso-8601-date="2024-02-27">2024</year><month>02</month><day>27</day></date-in-citation>
-      <uri>https://arxiv.org/abs/1508.04409</uri>
-      <pub-id pub-id-type="doi">10.48550/ARXIV.1508.04409</pub-id>
-    </element-citation>
-  </ref>
-  <ref id="ref-cacciabue_covidex_2022">
-    <element-citation publication-type="article-journal">
-      <person-group person-group-type="author">
-        <name><surname>Cacciabue</surname><given-names>Marco</given-names></name>
-        <name><surname>Aguilera</surname><given-names>Pablo</given-names></name>
-        <name><surname>Gismondi</surname><given-names>María Inés</given-names></name>
-        <name><surname>Taboga</surname><given-names>Oscar</given-names></name>
-      </person-group>
-      <article-title>Covidex: An ultrafast and accurate tool for SARS-CoV-2 subtyping</article-title>
-      <source>Infection, Genetics and Evolution</source>
-      <year iso-8601-date="2022-04">2022</year><month>04</month>
-      <date-in-citation content-type="access-date"><year iso-8601-date="2024-02-27">2024</year><month>02</month><day>27</day></date-in-citation>
-      <volume>99</volume>
-      <uri>https://linkinghub.elsevier.com/retrieve/pii/S1567134822000582</uri>
-      <pub-id pub-id-type="doi">10.1016/j.meegid.2022.105261</pub-id>
-      <fpage>105261</fpage>
-      <lpage></lpage>
-    </element-citation>
-  </ref>
   <ref id="ref-kmer">
     <element-citation>
       <person-group person-group-type="author">
@@ -301,6 +282,37 @@ a Creative Commons Attribution 4.0 International License (CC BY
       <year iso-8601-date="2018">2018</year>
       <uri>https://cran.r-project.org/package=kmer</uri>
       <pub-id pub-id-type="doi">10.5281/zenodo.1227690</pub-id>
+    </element-citation>
+  </ref>
+  <ref id="ref-r-2023">
+    <element-citation publication-type="book">
+      <person-group person-group-type="author">
+        <string-name>R Core Team</string-name>
+      </person-group>
+      <source>R: A language and environment for statistical computing</source>
+      <publisher-name>R Foundation for Statistical Computing</publisher-name>
+      <publisher-loc>Vienna, Austria</publisher-loc>
+      <year iso-8601-date="2023">2023</year>
+      <uri>https://www.r-project.org/</uri>
+    </element-citation>
+  </ref>
+  <ref id="ref-shiny">
+    <element-citation publication-type="book">
+      <person-group person-group-type="author">
+        <name><surname>Chang</surname><given-names>Winston</given-names></name>
+        <name><surname>Cheng</surname><given-names>Joe</given-names></name>
+        <name><surname>Allaire</surname><given-names>JJ</given-names></name>
+        <name><surname>Sievert</surname><given-names>Carson</given-names></name>
+        <name><surname>Schloerke</surname><given-names>Barret</given-names></name>
+        <name><surname>Xie</surname><given-names>Yihui</given-names></name>
+        <name><surname>Allen</surname><given-names>Jeff</given-names></name>
+        <name><surname>McPherson</surname><given-names>Jonathan</given-names></name>
+        <name><surname>Dipert</surname><given-names>Alan</given-names></name>
+        <name><surname>Borges</surname><given-names>Barbara</given-names></name>
+      </person-group>
+      <source>Shiny: Web application framework for r</source>
+      <year iso-8601-date="2023">2023</year>
+      <uri>https://CRAN.R-project.org/package=shiny</uri>
     </element-citation>
   </ref>
 </ref-list>
