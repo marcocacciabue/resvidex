@@ -68,8 +68,8 @@ In the second step, the predict function from the ranger package (Wright et al.,
 
 `Resvidex` was designed to be used by researchers who want to classify their samples of HRSV according to the Goya et. al. proposal (@goya_unified_2024). 
 It comes with two classification models: one for whole genome sequences (FULL_GENOME for sequence length of aproximately 15000 bp) and other for the G coding sequence (G for aproximately 900 bp). The HRSV classification comprises 41 clades or genetic groups: 25 for subgroup A and 16 for subgroup B. 
-# How to use the aplication
-![lalalalala](Imagen.jpg)
+# Examples
+Four vignettes are available to demostrate how to use the tool. 
 
 # Acknowledgements
 
