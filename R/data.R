@@ -6,7 +6,7 @@
 #' @format The model includes a list with 18 elements (modified from a Object of class `ranger`):
 #' \describe{
 #'   \item{predictions}{training dataset predictions}
-#'   \item{num.trees}{Number of decision trees (ussually 1000)}
+#'   \item{num.trees}{Number of decision trees (usually 1000)}
 #'   \item{num.independent.variables}{Number of independent variables}
 #'   \item{mtry}{Value of mtry used}
 #'   \item{min.node.size}{Value of minimal node size used.}
@@ -35,7 +35,7 @@
 #' @format The model includes a list with 18 elements (modified from a Object of class `ranger`):
 #' \describe{
 #'   \item{predictions}{training dataset predictions}
-#'   \item{num.trees}{Number of decision trees (ussually 1000)}
+#'   \item{num.trees}{Number of decision trees (usually 1000)}
 #'   \item{num.independent.variables}{Number of independent variables}
 #'   \item{mtry}{Value of mtry used}
 #'   \item{min.node.size}{Value of minimal node size used.}

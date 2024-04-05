@@ -40,7 +40,7 @@ Alternatively, you can download the repository as a .zip file and install it man
 
 ## **`r app_name `** is an R package
 
-This means that users that prefer working directly in an R console can use some of the exported functions. The easiest way is to use the wrapper funtion "Classify()"
+This means that users that prefer working directly in an R console can use some of the exported functions. The easiest way is to use the wrapper function "Classify()"
 
 ```{r, eval=FALSE}
 #load the library
@@ -118,7 +118,7 @@ docker run -d --rm -p 3838:3838 cacciabue/resvidex:shiny
     file and press RUN.
 6.  You can save a report using the corresponding button.
 
-### **ReSVidex** in a docker image with all dependecies allready installed
+### **ReSVidex** in a docker image with all dependencies already installed
 
 For more reproducibility a fully operational environment is available to
 work directly in docker:
