@@ -144,70 +144,85 @@ a Creative Commons Attribution 4.0 International License (CC BY
   region (2HR) of the G gene, which encodes the attachment glycoprotein
   and exhibits the highest genetic and antigenic variability.</p>
   <p>Clade classification typically involves analyzing gene sequences
-  from current strains alongside reference sequences using phylogenetic
-  analysis. This process is often time-consuming and necessitates
-  specialized training and equipment. Alternatively, advanced machine
-  learning methodologies have demonstrated their ability to provide
-  precise predictions by employing algorithms capable of uncovering
-  intricate patterns within relevant viral datasets
+  from current strains alongside a set of reference sequences using
+  phylogenetic analysis. This process is usually time-consuming and
+  requires specialized training and equipment. Alternatively, advanced
+  machine learning methodologies have demonstrated their ability to
+  provide accurate predictions by employing algorithms capable of
+  uncovering intricate patterns within relevant viral datasets
   (<xref alt="Cacciabue &amp; Marcone, 2023" rid="ref-cacciabue_infinity_2023" ref-type="bibr">Cacciabue
-  &amp; Marcone, 2023</xref>,humayun_computational_2021,Wang_2020).</p>
+  &amp; Marcone, 2023</xref>;
+  <xref alt="Humayun et al., 2021" rid="ref-humayun_computational_2021" ref-type="bibr">Humayun
+  et al., 2021</xref>;
+  <xref alt="Wang Y, 2020" rid="ref-Wang_2020" ref-type="bibr">Wang Y,
+  2020</xref>).</p>
   <p>Here we introduce <monospace>Resvidex</monospace>, an open-source R
-  package (R Core Team
-  (<xref alt="2023" rid="ref-r-2023" ref-type="bibr">2023</xref>)),
-  dedicated to aid researchers in classifying HRSV sequences (full
-  genome or G gene) at the lower levels of resolution in an easy, fast
-  and reproducible way. <monospace>Resvidex</monospace> is a tool based
-  on alignment‐free machine learning for HRSV classification into
-  subtypes and clades. It is fast, sensitive, specific, and ready to
-  implement, as it is available to run locally for R users. It also
-  includes a web application (Chang et al.
-  (<xref alt="2023" rid="ref-shiny" ref-type="bibr">2023</xref>)) that
-  has a user‐friendly interface. Additionally, it can be tested on an
-  internet connection without any installation (only for small
-  datasets).</p>
+  package
+  (<xref alt="R Core Team, 2023" rid="ref-r-2023" ref-type="bibr">R Core
+  Team, 2023</xref>), dedicated to aid researchers in classifying HRSV
+  sequences (full genome or G gene) at the lower levels of resolution in
+  an easy, fast and reproducible way. <monospace>Resvidex</monospace> is
+  a tool based on alignment‐free machine learning for HRSV
+  classification into subtypes and clades. It is fast, sensitive,
+  specific, and ready to implement, as it is available to run locally
+  for R users. It also includes a web application
+  (<xref alt="Chang et al., 2023" rid="ref-shiny" ref-type="bibr">Chang
+  et al., 2023</xref>) that has a user‐friendly interface. Additionally,
+  it can be tested on an internet connection without any installation
+  (only for small datasets).</p>
   <p>The overall classification algorithm that
   <monospace>Resvidex</monospace> uses is divided into three majors
   steps. In the initial phase, the user data is loaded in a multifasta
   format, and the k-mer counting operation is executed utilizing the
-  k-mer package (Wilkinson
-  (<xref alt="2018" rid="ref-kmer" ref-type="bibr">2018</xref>)). Each
-  count of k-mers undergoes normalization based on both the k-mer size
-  (k = 6) and the length of the sequence. Alternatively, the user can
-  copy and paste the query sequence directly to the app. In the second
-  step, the predict function from the ranger package (Wright et al.,
-  2015) is invoked using a pre-trained random forest model. It
-  calculates a probability score through a majority vote rule. Using
-  this score, the application determines the classification score for
-  each query sequence. Additionally,the app also calculates the
-  proportion of N bases in the genome and the genome length. These
-  values are important as divergencies from the expected values can
-  impact notably over the classification results. On the final step,
-  sequences are separated in two tables, one showing the sequences that
-  passed all the quality checks and another with sequences that did not
-  pass at least one of the filter steps. These filters ensure that each
-  sequence achieves a probability score of 0.4 or higher, that the
-  sequence length aligns closely with the expected length for the
-  classification model (with a tolerance of up to 50%), and that the
-  proportion of ambiguous bases (N) in the sequence does not exceed 2%
-  of the genome length. Sequences that do not meet the necessary
-  criteria should be analyzed manually with other methodologies
-  (i.e. alignment-dependant tools) that may shield a more robust result.
-  Although not recommended, the app allows the user to manually tweak
-  these filters. Additionally, a concise report can be generated,
-  incorporating the results table, date of analysis, and model
-  information.</p>
+  k-mer package
+  (<xref alt="Wilkinson, 2018" rid="ref-kmer" ref-type="bibr">Wilkinson,
+  2018</xref>). Each count of k-mers undergoes normalization based on
+  both the k-mer size (k = 6) and the length of the sequence.
+  Alternatively, the user can copy and paste the query sequence directly
+  to the app. In the second step, the predict function from the ranger
+  package
+  (<xref alt="Wright &amp; Ziegler, 2015" rid="ref-wright_ranger_2015" ref-type="bibr">Wright
+  &amp; Ziegler, 2015</xref>) is invoked using a pre-trained random
+  forest model. It calculates a probability score through a majority
+  vote rule. Using this score, the application determines the
+  classification score for each query sequence. Additionally,the app
+  also calculates the proportion of N bases in the genome and the genome
+  length. These values are important as divergencies from the expected
+  values can impact notably over the classification results. On the
+  final step, sequences are separated in two tables, one showing the
+  sequences that passed all the quality checks and another with
+  sequences that did not pass at least one of the filter steps. These
+  filters ensure that each sequence achieves a probability score of 0.4
+  or higher, that the sequence length aligns closely with the expected
+  length for the classification model (with a tolerance of up to 50%),
+  and that the proportion of ambiguous bases (N) in the sequence does
+  not exceed 2% of the genome length. Sequences that do not meet the
+  necessary criteria should be analyzed manually with other
+  methodologies (i.e. alignment-dependent tools) that may shield a more
+  robust result. Although not recommended, the app allows the user to
+  manually tweak these filters. Additionally, a concise report can be
+  generated, incorporating the results table, date of analysis, and
+  model information.</p>
   <p><monospace>Resvidex</monospace> was designed to be used by
   researchers who want to classify their samples of HRSV according to
-  the Goya et. al. proposal (Goya et al.
-  (<xref alt="2024" rid="ref-goya_unified_2024" ref-type="bibr">2024</xref>)).
-  <monospace>Resvidex</monospace> comes with two classification models:
-  one for whole genome sequences (FULL_GENOME for sequence length of
-  aproximately 15000 bp) and other for the G coding sequence (G for
-  aproximately 900 bp). The HRSV classification comprises 41 clades or
-  genetic groups: 25 for subgroup A and 16 for subgroup B. # How to use
-  the aplication
-  <named-content content-type="image">lalalalala</named-content></p>
+  the Goya et. al. proposal
+  (<xref alt="Goya et al., 2024" rid="ref-goya_unified_2024" ref-type="bibr">Goya
+  et al., 2024</xref>). It comes with two classification models: one for
+  whole genome sequences (FULL_GENOME for sequence length of
+  approximately 15000 bp) and other for the G coding sequence (G for
+  approximately 900 bp). The HRSV classification comprises 41 clades or
+  genetic groups: 25 for subgroup A and 16 for subgroup B.</p>
+</sec>
+<sec id="examples">
+  <title>Examples</title>
+  <p>Tutorials are available to demonstrate how to use the tool. These
+  include: How to use the shiny app
+  <ext-link ext-link-type="uri" xlink:href="https://marcocacciabue.github.io/resvidex/articles/resvidex_vignette.html">vignette</ext-link>,
+  step-by-step explanation of a in-built
+  <ext-link ext-link-type="uri" xlink:href="https://marcocacciabue.github.io/resvidex/articles/resvidex_vignette_R.html">example</ext-link>,
+  and another example with a
+  <ext-link ext-link-type="uri" xlink:href="https://marcocacciabue.github.io/resvidex/articles/an_example.html">larger
+  dataset</ext-link>.</p>
 </sec>
 <sec id="acknowledgements">
   <title>Acknowledgements</title>
@@ -272,6 +287,19 @@ a Creative Commons Attribution 4.0 International License (CC BY
       <lpage></lpage>
     </element-citation>
   </ref>
+  <ref id="ref-wright_ranger_2015">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Wright</surname><given-names>Marvin N.</given-names></name>
+        <name><surname>Ziegler</surname><given-names>Andreas</given-names></name>
+      </person-group>
+      <article-title>Ranger: A Fast Implementation of Random Forests for High Dimensional Data in C++ and R</article-title>
+      <year iso-8601-date="2015">2015</year>
+      <date-in-citation content-type="access-date"><year iso-8601-date="2024-02-27">2024</year><month>02</month><day>27</day></date-in-citation>
+      <uri>https://arxiv.org/abs/1508.04409</uri>
+      <pub-id pub-id-type="doi">10.48550/ARXIV.1508.04409</pub-id>
+    </element-citation>
+  </ref>
   <ref id="ref-kmer">
     <element-citation>
       <person-group person-group-type="author">
@@ -285,11 +313,11 @@ a Creative Commons Attribution 4.0 International License (CC BY
     </element-citation>
   </ref>
   <ref id="ref-r-2023">
-    <element-citation publication-type="book">
+    <element-citation>
       <person-group person-group-type="author">
         <string-name>R Core Team</string-name>
       </person-group>
-      <source>R: A language and environment for statistical computing</source>
+      <article-title>R: A language and environment for statistical computing</article-title>
       <publisher-name>R Foundation for Statistical Computing</publisher-name>
       <publisher-loc>Vienna, Austria</publisher-loc>
       <year iso-8601-date="2023">2023</year>
@@ -313,6 +341,44 @@ a Creative Commons Attribution 4.0 International License (CC BY
       <source>Shiny: Web application framework for r</source>
       <year iso-8601-date="2023">2023</year>
       <uri>https://CRAN.R-project.org/package=shiny</uri>
+    </element-citation>
+  </ref>
+  <ref id="ref-humayun_computational_2021">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Humayun</surname><given-names>Fahad</given-names></name>
+        <name><surname>Khan</surname><given-names>Fatima</given-names></name>
+        <name><surname>Fawad</surname><given-names>Nasim</given-names></name>
+        <name><surname>Shamas</surname><given-names>Shazia</given-names></name>
+        <name><surname>Fazal</surname><given-names>Sahar</given-names></name>
+        <name><surname>Khan</surname><given-names>Abbas</given-names></name>
+        <name><surname>Ali</surname><given-names>Arif</given-names></name>
+        <name><surname>Farhan</surname><given-names>Ali</given-names></name>
+        <name><surname>Wei</surname><given-names>Dong-Qing</given-names></name>
+      </person-group>
+      <article-title>Computational Method for Classification of Avian Influenza A Virus Using DNA Sequence Information and Physicochemical Properties</article-title>
+      <source>Frontiers in Genetics</source>
+      <year iso-8601-date="2021-01">2021</year><month>01</month>
+      <date-in-citation content-type="access-date"><year iso-8601-date="2024-03-26">2024</year><month>03</month><day>26</day></date-in-citation>
+      <volume>12</volume>
+      <issn>1664-8021</issn>
+      <uri>https://www.frontiersin.org/articles/10.3389/fgene.2021.599321/full</uri>
+      <pub-id pub-id-type="doi">10.3389/fgene.2021.599321</pub-id>
+      <fpage>599321</fpage>
+      <lpage></lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-Wang_2020">
+    <element-citation publication-type="paper-conference">
+      <person-group person-group-type="author">
+        <name><surname>Wang Y</surname><given-names>Du J</given-names><suffix>Bao J</suffix></name>
+      </person-group>
+      <article-title>Rapid detection and prediction of influenza a subtype using deep convolutional neural network based ensemble learning</article-title>
+      <source>Proceedings of the 2024 14th International Conference on Bioscience, Biochemistry and Bioinformatics</source>
+      <publisher-name>ACM</publisher-name>
+      <publisher-loc>Kyoto Japan</publisher-loc>
+      <year iso-8601-date="2020-01">2020</year><month>01</month>
+      <isbn>9798400716768</isbn>
     </element-citation>
   </ref>
 </ref-list>
