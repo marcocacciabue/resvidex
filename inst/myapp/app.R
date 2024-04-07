@@ -35,7 +35,7 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
        img(src="ReSVidex.png",class="logo"),
 
        ),
-  div(id="app_title2","Molecular classification of Respiratory Syncytial Virus sequences (whole genome version)"),
+  div(id="app_title2","Molecular classification of Respiratory Syncytial Virus sequences"),
     # introjsUI(), # must include in UI
   br(),
   br(),
@@ -77,14 +77,16 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
       column(12, align = "center",
              radioGroupButtons(
                inputId = "select",
-               label = "Choose the model according to the length of your sequences",
+               label = "Choose the model according to the length of your sequences
+               (FULL_GENOME = 15000 nt, G = 900 nt)",
                choices = c("FULL_GENOME", "G"),
                status = "primary")),
       column(12, align = "center",
-             checkboxInput("advanceOptions", "Advanced options", FALSE)),
+             div(id="advanced",
+                 checkboxInput("advanceOptions", "Advanced options", FALSE)),
       column(12, align = "center",
-             conditionalPanel(
-               condition='input.advanceOptions',
+        div(
+               id="testeo",
                textInput("user", "User name (optional)", "anonymous"),
                checkboxInput("qualityfilter", "Classify even if quality of sequence is low? (Not recommended)", FALSE),
                sliderInput("QC_value", "Probability threshold (default 0.4):",
@@ -95,8 +97,9 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
                            value = 2, step = 0.05),
                sliderInput("Length_value", "Proportion of difference to the expected sequence length (default 0.5): :",
                            min = 0.1, max = 1,
-                           value = 0.5, step = 0.05)),),
-
+                           value = 0.5, step = 0.05)))),
+      column(12, align = "center",
+             textOutput("run_info",)),
       column(12, align = "center",
              actionButton("go", "RUN",class = "btn-info")),
       column(4, align = "right",uiOutput("step_button_1")),
@@ -172,7 +175,13 @@ server <- shinyServer(function(input, output, session) {
                    }
   })
 
-
+  observeEvent(input$advanceOptions,{
+    if (input$advanceOptions==FALSE){
+      shinyjs::hide(id = "testeo")
+    }else{
+      shinyjs::show(id = "testeo")
+    }
+  })
 
   observeEvent(input$step_button_1, {
     values$step=1
@@ -197,16 +206,16 @@ server <- shinyServer(function(input, output, session) {
 
   })
 
-  observeEvent(values$step,{
-  runjs('
-      document.getElementById("prv").scrollIntoView();
-    ')
-  })
-  observeEvent(input$advanceOptions,{
-    runjs('
-      document.getElementById("prv").scrollIntoView();
-    ')
-  })
+  # observeEvent(values$step,{
+  # runjs('
+  #     document.getElementById("prv").scrollIntoView();
+  #   ')
+  # })
+  # observeEvent(input$advanceOptions,{
+  #   runjs('
+  #     document.getElementById("prv").scrollIntoView();
+  #   ')
+  # })
  observe({
 
   if(values$step > 1){
@@ -222,21 +231,21 @@ server <- shinyServer(function(input, output, session) {
   }
    if(values$step == 1){
      shinyjs::hide(id = "select")
-     shinyjs::hide(id = "advanceOptions")
+     shinyjs::hide(id = "advanced")
 
    }
    if(values$step == 2){
      shinyjs::show(id = "select")
-     shinyjs::show(id = "advanceOptions")
+     shinyjs::show(id = "advanced")
 
    }
 
 
    if(values$step == 3){
      shinyjs::show(id = "go")
-     shinyjs::hide(id = "advanceOptions")
-
-
+     shinyjs::hide(id = "select")
+     shinyjs::hide(id = "advanced")
+     shinyjs::hide(id = "testeo")
    }else{
      shinyjs::hide(id = "go")
 

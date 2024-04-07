@@ -31,7 +31,7 @@ install it manually with Rstudio.
 
 This means that users that prefer working directly in an R console can
 use some of the exported functions. The easiest way is to use the
-wrapper funtion “Classify()”
+wrapper function “Classify()”
 
 ``` r
 #load the library
@@ -108,7 +108,7 @@ docker run -d --rm -p 3838:3838 cacciabue/resvidex:shiny
     file and press RUN.
 6.  You can save a report using the corresponding button.
 
-### **ReSVidex** in a docker image with all dependecies allready installed
+### **ReSVidex** in a docker image with all dependencies already installed
 
 For more reproducibility a fully operational environment is available to
 work directly in docker:

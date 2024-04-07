@@ -20,6 +20,7 @@
 #'
 #' @export
 #' @importFrom ranger predictions
+#' @importFrom stats predict
 #' @examples
 #'
 #'
