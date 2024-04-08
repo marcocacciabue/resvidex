@@ -70,7 +70,7 @@ In the second step, the predict function from the ranger package [@wright_ranger
 It comes with two classification models: one for whole genome sequences (FULL_GENOME for sequence length of approximately 15000 bp) and other for the G coding sequence (G for approximately 900 bp). The HRSV classification comprises 41 clades or genetic groups: 25 for subgroup A and 16 for subgroup B. 
 
 # Examples
-A few vignettes are available, these include: How to use the shiny app [vignette](https://marcocacciabue.github.io/resvidex/articles/resvidex_vignette.html), step-by-step explanation of a in-built [example](https://marcocacciabue.github.io/resvidex/articles/resvidex_vignette_R.html), and another example with a [larger dataset](https://marcocacciabue.github.io/resvidex/articles/an_example.html). 
+A few vignettes are available, these include: How to use the shiny app [vignette](https://marcocacciabue.github.io/resvidex/articles/01_resvidex_vignette.html), step-by-step explanation of a in-built [example](https://marcocacciabue.github.io/resvidex/articles/02_resvidex_vignette_R.html), and another example with a [larger dataset](https://marcocacciabue.github.io/resvidex/articles/04_an_example.html). 
 
 # Acknowledgements
 

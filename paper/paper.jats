@@ -215,13 +215,13 @@ a Creative Commons Attribution 4.0 International License (CC BY
 </sec>
 <sec id="examples">
   <title>Examples</title>
-  <p>Tutorials are available to demonstrate how to use the tool. These
-  include: How to use the shiny app
-  <ext-link ext-link-type="uri" xlink:href="https://marcocacciabue.github.io/resvidex/articles/resvidex_vignette.html">vignette</ext-link>,
+  <p>A few vignettes are available, these include: How to use the shiny
+  app
+  <ext-link ext-link-type="uri" xlink:href="https://marcocacciabue.github.io/resvidex/articles/01_resvidex_vignette.html">vignette</ext-link>,
   step-by-step explanation of a in-built
-  <ext-link ext-link-type="uri" xlink:href="https://marcocacciabue.github.io/resvidex/articles/resvidex_vignette_R.html">example</ext-link>,
+  <ext-link ext-link-type="uri" xlink:href="https://marcocacciabue.github.io/resvidex/articles/02_resvidex_vignette_R.html">example</ext-link>,
   and another example with a
-  <ext-link ext-link-type="uri" xlink:href="https://marcocacciabue.github.io/resvidex/articles/an_example.html">larger
+  <ext-link ext-link-type="uri" xlink:href="https://marcocacciabue.github.io/resvidex/articles/04_an_example.html">larger
   dataset</ext-link>.</p>
 </sec>
 <sec id="acknowledgements">
