@@ -43,9 +43,9 @@
 </nav><div class="container template-reference-topic">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>PredictionCaller</h1>
+      <img src="" class="logo" alt=""><h1>prediction_caller</h1>
       
-      <div class="d-none name"><code>PredictionCaller.Rd</code></div>
+      <div class="d-none name"><code>prediction_caller.Rd</code></div>
     </div>
 
     <div class="ref-description section level2">
@@ -54,13 +54,13 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">PredictionCaller</span><span class="op">(</span><span class="va">NormalizedData</span>, <span class="va">model</span>, QC_unknown <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">prediction_caller</span><span class="op">(</span><span class="va">NormalizedData</span>, <span class="va">model</span>, QC_unknown <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>NormalizedData</dt>
-<dd><p>A list of 3 elements: normalized k-mer counts, genome length and contents of undefined bases.Produced by the <code><a href="Kcounter.html">Kcounter()</a></code> function</p></dd>
+<dd><p>A list of 3 elements: normalized k-mer counts, genome length and contents of undefined bases.Produced by the <code><a href="kcounter.html">kcounter()</a></code> function</p></dd>
 
 
 <dt>model</dt>
@@ -80,11 +80,11 @@ The output has the following properties:</p><ul><li><p>Each row corresponds to o
 <li><p><code>Label</code> is the name of the sequence.</p></li>
 <li><p><code>Clade</code> is the corresponding prediction.</p></li>
 <li><p><code>Probability</code> is the proportions of trees that agreed with the Clade result. Values between 0 to 1.</p></li>
-<li><p><code>Probability_QC</code> a logical value. If <code>TRUE</code> the sequence passed the quality filter for probability. Run <code><a href="QualityControl.html">QualityControl()</a></code> to fill this column.</p></li>
+<li><p><code>Probability_QC</code> a logical value. If <code>TRUE</code> the sequence passed the quality filter for probability. Run <code><a href="quality_control.html">quality_control()</a></code> to fill this column.</p></li>
 <li><p><code>Length</code> Sequence length.</p></li>
-<li><p><code>Length_QC</code> a logical value. If <code>TRUE</code> the sequence passed the quality filter for length.Run <code><a href="QualityControl.html">QualityControl()</a></code> to fill this column</p></li>
+<li><p><code>Length_QC</code> a logical value. If <code>TRUE</code> the sequence passed the quality filter for length.Run <code><a href="quality_control.html">quality_control()</a></code> to fill this column</p></li>
 <li><p><code>N</code> proportions of undefined bases in the sequence. The lower the better.</p></li>
-<li><p><code>N_QC</code> a logical value. If <code>TRUE</code> the sequence passed the quality filter for undefined bases. Run <code><a href="QualityControl.html">QualityControl()</a></code> to fill this column</p></li>
+<li><p><code>N_QC</code> a logical value. If <code>TRUE</code> the sequence passed the quality filter for undefined bases. Run <code><a href="quality_control.html">quality_control()</a></code> to fill this column</p></li>
 </ul></div>
 
     <div class="section level2">
@@ -96,9 +96,9 @@ The output has the following properties:</p><ul><li><p>Each row corresponds to o
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">sequence</span><span class="op">&lt;-</span><span class="fu">ape</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ape/man/read.dna.html" class="external-link">read.FASTA</a></span><span class="op">(</span><span class="va">file_path</span>,type <span class="op">=</span> <span class="st">"DNA"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">NormalizedData</span> <span class="op">&lt;-</span> <span class="fu"><a href="Kcounter.html">Kcounter</a></span><span class="op">(</span>SequenceData<span class="op">=</span><span class="va">sequence</span>,model<span class="op">=</span><span class="va">FULL_GENOME</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">NormalizedData</span> <span class="op">&lt;-</span> <span class="fu"><a href="kcounter.html">kcounter</a></span><span class="op">(</span>SequenceData<span class="op">=</span><span class="va">sequence</span>,model<span class="op">=</span><span class="va">FULL_GENOME</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">PredictedData</span> <span class="op">&lt;-</span> <span class="fu">PredictionCaller</span><span class="op">(</span>NormalizedData<span class="op">=</span><span class="va">NormalizedData</span>,model<span class="op">=</span><span class="va">FULL_GENOME</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">PredictedData</span> <span class="op">&lt;-</span> <span class="fu">prediction_caller</span><span class="op">(</span>NormalizedData<span class="op">=</span><span class="va">NormalizedData</span>,model<span class="op">=</span><span class="va">FULL_GENOME</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

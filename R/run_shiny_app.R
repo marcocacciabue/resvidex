@@ -9,11 +9,11 @@
 #'
 #' @examples
 #' \dontrun{
-#' resvidex::runShinyApp()
+#' resvidex::run_shiny_app()
 #' }
 #'
 
-runShinyApp <- function() {
+run_shiny_app <- function() {
 
   # find and launch the app
   appDir <- system.file("myapp", "app.R", package = "resvidex")

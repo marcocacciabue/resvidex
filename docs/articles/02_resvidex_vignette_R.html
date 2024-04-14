@@ -108,11 +108,11 @@ a…</strong></p>
 <span><span class="va">file_path</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,<span class="st">"test_dataset.fasta"</span>,package<span class="op">=</span><span class="st">"resvidex"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Use the wrapper function. You can change the classification model and pass other arguments</span></span>
-<span><span class="fu"><a href="../reference/Classify.html">Classify</a></span><span class="op">(</span>inputFile<span class="op">=</span><span class="va">file_path</span>,model<span class="op">=</span><span class="va">FULL_GENOME</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/classify.html">classify</a></span><span class="op">(</span>inputFile<span class="op">=</span><span class="va">file_path</span>,model<span class="op">=</span><span class="va">FULL_GENOME</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#If you want to save the results in a file in your working directory, you can run the pipeline and</span></span>
 <span><span class="co">#save it as a variable to export</span></span>
-<span><span class="va">Classification_Print</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/Classify.html">Classify</a></span><span class="op">(</span>inputFile<span class="op">=</span><span class="va">file_path</span>,model<span class="op">=</span><span class="va">FULL_GENOME</span><span class="op">)</span></span>
+<span><span class="va">Classification_Print</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/classify.html">classify</a></span><span class="op">(</span>inputFile<span class="op">=</span><span class="va">file_path</span>,model<span class="op">=</span><span class="va">FULL_GENOME</span><span class="op">)</span></span>
 <span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv2</a></span><span class="op">(</span><span class="va">Classification_Print</span>,<span class="st">"Classification_file.csv"</span><span class="op">)</span></span></code></pre>
 <p><img src="StS_3.gif" width="100%"></p>
 <p>Then to see the results you can open the .cvs file saved in you

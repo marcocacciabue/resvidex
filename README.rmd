@@ -40,7 +40,7 @@ Alternatively, you can download the repository as a .zip file and install it man
 
 ## **`r app_name `** is an R package
 
-This means that users that prefer working directly in an R console can use some of the exported functions. The easiest way is to use the wrapper function "Classify()"
+This means that users that prefer working directly in an R console can use some of the exported functions. The easiest way is to use the wrapper function "classify()"
 
 ```{r, eval=FALSE}
 #load the library
@@ -51,11 +51,11 @@ library(resvidex)
 file_path<-system.file("extdata","test_dataset.fasta",package="resvidex")
 
 # Use the wrapper function. You can change the classification model and pass other arguments
-Classify(inputFile=file_path,model=FULL_GENOME)
+classify(inputFile=file_path,model=FULL_GENOME)
 
 #If you want to save the results in a file in your working directory, you can run the pipeline and
 #save it as a variable to export
-Classification_Print<-Classify(inputFile=file_path,model=FULL_GENOME)
+Classification_Print<-classify(inputFile=file_path,model=FULL_GENOME)
 utils::write.csv2(Classification_Print,"Classification_file.csv")
 
 
@@ -71,16 +71,16 @@ file_path<-system.file("extdata","test_dataset.fasta",package="resvidex")
 sequence<-ape::read.FASTA(file_path,type = "DNA")
 
 # We the count and normalize the k-mers
-NormalizedData <- Kcounter(SequenceData=sequence,model=FULL_GENOME)
+NormalizedData <- kcounter(SequenceData=sequence,model=FULL_GENOME)
 
 # We perform the classification
-PredictedData <- PredictionCaller(NormalizedData=NormalizedData,model=FULL_GENOME)
+PredictedData <- prediction_caller(NormalizedData=NormalizedData,model=FULL_GENOME)
 
 # We add the quality FLAGs
-PredictedData <- QualityControl(PredictedData,model=FULL_GENOME)
+PredictedData <- quality_control(PredictedData,model=FULL_GENOME)
 
 # We adjust the classification according to the FLAGs present for each sample:
-PredictedData <- Quality_filter(PredictedData)
+PredictedData <- quality_filter(PredictedData)
 
 # The PredictedData dataframe contains the classifications
 
@@ -156,7 +156,7 @@ library(resvidex)
 file_path<-system.file("extdata","test_dataset.fasta",package="resvidex")
 
 # Use the wrapper function. You can pass other arguments
-Classification<-Classify(inputFile=file_path,model=FULL_GENOME)
+Classification<-classify(inputFile=file_path,model=FULL_GENOME)
 Classification
 
 #if you want to export the prediction
@@ -175,11 +175,11 @@ q()
 
 #for WINDOWS 
 
-docker run --rm --volume %cd%:/nexus cacciabue/resvidex:cli R -e "setwd('nexus');library('resvidex');Classification<-Classify(inputFile='test_dataset.fasta',model=FULL_GENOME);utils::write.csv2(Classification,'Classification_file.csv')"
+docker run --rm --volume %cd%:/nexus cacciabue/resvidex:cli R -e "setwd('nexus');library('resvidex');Classification<-classify(inputFile='test_dataset.fasta',model=FULL_GENOME);utils::write.csv2(Classification,'Classification_file.csv')"
 
 #for unix/MAC
 
-docker run --rm --volume $(pwd):/nexus cacciabue/resvidex:cli R -e "setwd('nexus');library('resvidex');Classification<-Classify(inputFile='test_dataset.fasta',model=FULL_GENOME);utils::write.csv2(Classification,'Classification_file.csv')"
+docker run --rm --volume $(pwd):/nexus cacciabue/resvidex:cli R -e "setwd('nexus');library('resvidex');Classification<-classify(inputFile='test_dataset.fasta',model=FULL_GENOME);utils::write.csv2(Classification,'Classification_file.csv')"
 
 
 # USER SHOULD CHANGE test_dataset.fasta for the correct file name

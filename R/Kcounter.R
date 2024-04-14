@@ -1,5 +1,5 @@
 
-#' Kcounter
+#' kcounter
 #'
 #' Counts k-mers of the size required by the input model and normalize the data regarding genome size.
 #'
@@ -17,11 +17,11 @@
 #'
 #' sequence<-ape::read.FASTA(file_path,type = "DNA")
 #'
-#' NormalizedData<-Kcounter(SequenceData=sequence,model=FULL_GENOME)
+#' NormalizedData<-kcounter(SequenceData=sequence,model=FULL_GENOME)
 
-Kcounter<-function(SequenceData,
+kcounter<-function(SequenceData,
                     model){
-  ModelControl(model)
+  model_control(model)
   DataCount<-kmer::kcount(SequenceData , k=model$kmer)
   genome_length<-0
   n_length<-0

@@ -39,7 +39,7 @@ file<-"RSV_900_sequences.fasta"
 Used the classification function from the ReSVidex package and saved it
 
 ```
-Classification_Print<-Classify(inputFile=file, model=FULL_GENOME)
+Classification_Print<-classify(inputFile=file, model=FULL_GENOME)
 ```
 
 Visualized on the console the dataframe created by the function writing "Classification_1" on the script and running the line (i could instead write the line in the console itself)
@@ -130,10 +130,10 @@ knitr::include_graphics("example_13.png")
 
 **But there's more... we could change some parameters...**
 
-The function Classify has some predetermined parameters values that we can change
+The function classify has some predetermined parameters values that we can change
 
 ```
-Classify(inputFile=file,
+classify(inputFile=file,
         model=FULL_GENOME,
         QC_value=0.4,
         Length_value=0.5,
@@ -143,7 +143,7 @@ Classify(inputFile=file,
 For example we'll use the same dataset, but with a lower probability QC_value. The line would look like this
 
 ```
-Classification_2<-resvidex::Classify(inputFile=file,
+Classification_2<-resvidex::classify(inputFile=file,
                    model=FULL_GENOME,
                    QC_value=0.2)
 ```
@@ -151,7 +151,7 @@ Classification_2<-resvidex::Classify(inputFile=file,
 Or we could put a lower value for length, like this
 
 ```
-Classification_3<-resvidex::Classify(inputFile=file,
+Classification_3<-resvidex::classify(inputFile=file,
                                      model=FULL_GENOME,
                                      Length_value = 0.1)
 ```

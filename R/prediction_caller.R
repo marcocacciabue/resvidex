@@ -1,10 +1,10 @@
 
-#' PredictionCaller
+#' prediction_caller
 #'
 #' Performs the prediction and computes probability values.
 #'
-#' @param NormalizedData A list of 3 elements: normalized k-mer counts, genome length and contents of undefined bases.Produced by the [Kcounter()] function
-#' @inheritParams Kcounter
+#' @param NormalizedData A list of 3 elements: normalized k-mer counts, genome length and contents of undefined bases.Produced by the [kcounter()] function
+#' @inheritParams kcounter
 #' @param QC_unknown numeric value from 0 to 1. Stringent filter, do not classify below this probability score (default = 0.2)
 #' @return Data.frame with the classification results and quality checks.
 #' The output has the following properties:
@@ -12,11 +12,11 @@
 #' * `Label` is the name of the sequence.
 #' * `Clade` is the corresponding prediction.
 #' * `Probability` is the proportions of trees that agreed with the Clade result. Values between 0 to 1.
-#' * `Probability_QC` a logical value. If `TRUE` the sequence passed the quality filter for probability. Run [QualityControl()] to fill this column.
+#' * `Probability_QC` a logical value. If `TRUE` the sequence passed the quality filter for probability. Run [quality_control()] to fill this column.
 #' * `Length` Sequence length.
-#' * `Length_QC` a logical value. If `TRUE` the sequence passed the quality filter for length.Run [QualityControl()] to fill this column
+#' * `Length_QC` a logical value. If `TRUE` the sequence passed the quality filter for length.Run [quality_control()] to fill this column
 #' * `N` proportions of undefined bases in the sequence. The lower the better.
-#' * `N_QC` a logical value. If `TRUE` the sequence passed the quality filter for undefined bases. Run [QualityControl()] to fill this column
+#' * `N_QC` a logical value. If `TRUE` the sequence passed the quality filter for undefined bases. Run [quality_control()] to fill this column
 #'
 #' @export
 #' @importFrom ranger predictions
@@ -29,12 +29,12 @@
 #'
 #' sequence<-ape::read.FASTA(file_path,type = "DNA")
 #'
-#' NormalizedData <- Kcounter(SequenceData=sequence,model=FULL_GENOME)
+#' NormalizedData <- kcounter(SequenceData=sequence,model=FULL_GENOME)
 #'
-#' PredictedData <- PredictionCaller(NormalizedData=NormalizedData,model=FULL_GENOME)
+#' PredictedData <- prediction_caller(NormalizedData=NormalizedData,model=FULL_GENOME)
 #'
 
-PredictionCaller<-function(NormalizedData,
+prediction_caller<-function(NormalizedData,
                            model,
                            QC_unknown=0.3){
 
@@ -42,7 +42,7 @@ PredictionCaller<-function(NormalizedData,
     stop("'NormalizedData' must be indicated")
   }
 
-  ModelControl(model)
+  model_control(model)
 
   calling<-predict(model,
                                NormalizedData$DataCount)
@@ -61,7 +61,7 @@ PredictionCaller<-function(NormalizedData,
   }
 
 
-  # QualityList<-QualityControl(n_length=NormalizedData$n_length,
+  # QualityList<-quality_control(n_length=NormalizedData$n_length,
   #                          genome_length=NormalizedData$genome_length,
   #                          probability,
   #                          model)
@@ -86,13 +86,13 @@ PredictionCaller<-function(NormalizedData,
 
 
 
-#' QualityControl
+#' quality_control
 #'
-#' @param data data.frame obtained with [PredictionCaller()]
+#' @param data data.frame obtained with [prediction_caller()]
 #' @param QC_value numeric value from 0.3 to 1. (default = 0.4)
 #' @param Length_value numeric value from 0 to 1. Proportion of difference to the expected sequence length. (default = 0.5)
 #' @param N_value numeric value from 0 to 100. Percentage of acceptable ambiguous bases. (default = 2)
-#' @inheritParams Kcounter
+#' @inheritParams kcounter
 #' @return A list with three logical vectors. In each case TRUE means pass.
 #'
 #' @export
@@ -103,19 +103,19 @@ PredictionCaller<-function(NormalizedData,
 #'
 #' sequence<-ape::read.FASTA(file_path,type = "DNA")
 #'
-#' NormalizedData <- Kcounter(SequenceData=sequence,model=FULL_GENOME)
+#' NormalizedData <- kcounter(SequenceData=sequence,model=FULL_GENOME)
 #'
-#' PredictedData <- PredictionCaller(NormalizedData=NormalizedData,model=FULL_GENOME)
+#' PredictedData <- prediction_caller(NormalizedData=NormalizedData,model=FULL_GENOME)
 #'
-#' QualityControl(PredictedData,model=FULL_GENOME)
+#' quality_control(PredictedData,model=FULL_GENOME)
 #'
 #'
-QualityControl<-function(data,
+quality_control<-function(data,
                          QC_value=0.4,
                          Length_value=0.5,
                          N_value=2,
                          model){
-  ModelControl(model)
+  model_control(model)
 
   if(!is.numeric(QC_value)){
     stop("`QC_value` must be numeric")
@@ -159,11 +159,11 @@ QualityControl<-function(data,
 
 
 
-#' Quality_filter
+#' quality_filter
 #'
-#' Change Clade definition to "LowQuality" in samples with at least one FLAG from [QualityControl()].
+#' Change Clade definition to "LowQuality" in samples with at least one FLAG from [quality_control()].
 #'
-#' @param data data.frame obtained with [QualityControl()]
+#' @param data data.frame obtained with [quality_control()]
 #'
 #' @return data.frame
 #' @export
@@ -174,15 +174,15 @@ QualityControl<-function(data,
 #'
 #' sequence<-ape::read.FASTA(file_path,type = "DNA")
 #'
-#' NormalizedData <- Kcounter(SequenceData=sequence,model=FULL_GENOME)
+#' NormalizedData <- kcounter(SequenceData=sequence,model=FULL_GENOME)
 #'
-#' PredictedData <- PredictionCaller(NormalizedData=NormalizedData,model=FULL_GENOME)
+#' PredictedData <- prediction_caller(NormalizedData=NormalizedData,model=FULL_GENOME)
 #'
-#' PredictedData <- QualityControl(PredictedData,model=FULL_GENOME)
+#' PredictedData <- quality_control(PredictedData,model=FULL_GENOME)
 #'
-#' PredictedData <- Quality_filter(PredictedData)
+#' PredictedData <- quality_filter(PredictedData)
 #'
-Quality_filter<- function(data){
+quality_filter<- function(data){
 
   filter<-!(data$Length_QC & data$N_QC & data$Probability_QC)
   filter<- filter & (data$Clade!="unknown")

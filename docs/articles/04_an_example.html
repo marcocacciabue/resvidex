@@ -90,7 +90,7 @@ saved, as the working directory</p>
 <pre><code><span><span class="va">file</span><span class="op">&lt;-</span><span class="st">"RSV_900_sequences.fasta"</span></span></code></pre>
 <p>Used the classification function from the ReSVidex package and saved
 it</p>
-<pre><code><span><span class="va">Classification_Print</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/Classify.html">Classify</a></span><span class="op">(</span>inputFile<span class="op">=</span><span class="va">file</span>, model<span class="op">=</span><span class="va">FULL_GENOME</span><span class="op">)</span></span></code></pre>
+<pre><code><span><span class="va">Classification_Print</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/classify.html">classify</a></span><span class="op">(</span>inputFile<span class="op">=</span><span class="va">file</span>, model<span class="op">=</span><span class="va">FULL_GENOME</span><span class="op">)</span></span></code></pre>
 <p>Visualized on the console the dataframe created by the function
 writing “Classification_1” on the script and running the line (i could
 instead write the line in the console itself)</p>
@@ -146,20 +146,20 @@ plot like this</p>
 <p><img src="example_12.png" width="40%"><img src="example_13.png" width="40%"></p>
 <p><strong>But there’s more… we could change some
 parameters…</strong></p>
-<p>The function Classify has some predetermined parameters values that
+<p>The function classify has some predetermined parameters values that
 we can change</p>
-<pre><code><span><span class="fu"><a href="../reference/Classify.html">Classify</a></span><span class="op">(</span>inputFile<span class="op">=</span><span class="va">file</span>,</span>
+<pre><code><span><span class="fu"><a href="../reference/classify.html">classify</a></span><span class="op">(</span>inputFile<span class="op">=</span><span class="va">file</span>,</span>
 <span>        model<span class="op">=</span><span class="va">FULL_GENOME</span>,</span>
 <span>        QC_value<span class="op">=</span><span class="fl">0.4</span>,</span>
 <span>        Length_value<span class="op">=</span><span class="fl">0.5</span>,</span>
 <span>        N_value<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre>
 <p>For example we’ll use the same dataset, but with a lower probability
 QC_value. The line would look like this</p>
-<pre><code><span><span class="va">Classification_2</span><span class="op">&lt;-</span><span class="fu">resvidex</span><span class="fu">::</span><span class="fu"><a href="../reference/Classify.html">Classify</a></span><span class="op">(</span>inputFile<span class="op">=</span><span class="va">file</span>,</span>
+<pre><code><span><span class="va">Classification_2</span><span class="op">&lt;-</span><span class="fu">resvidex</span><span class="fu">::</span><span class="fu"><a href="../reference/classify.html">classify</a></span><span class="op">(</span>inputFile<span class="op">=</span><span class="va">file</span>,</span>
 <span>                   model<span class="op">=</span><span class="va">FULL_GENOME</span>,</span>
 <span>                   QC_value<span class="op">=</span><span class="fl">0.2</span><span class="op">)</span></span></code></pre>
 <p>Or we could put a lower value for length, like this</p>
-<pre><code><span><span class="va">Classification_3</span><span class="op">&lt;-</span><span class="fu">resvidex</span><span class="fu">::</span><span class="fu"><a href="../reference/Classify.html">Classify</a></span><span class="op">(</span>inputFile<span class="op">=</span><span class="va">file</span>,</span>
+<pre><code><span><span class="va">Classification_3</span><span class="op">&lt;-</span><span class="fu">resvidex</span><span class="fu">::</span><span class="fu"><a href="../reference/classify.html">classify</a></span><span class="op">(</span>inputFile<span class="op">=</span><span class="va">file</span>,</span>
 <span>                                     model<span class="op">=</span><span class="va">FULL_GENOME</span>,</span>
 <span>                                     Length_value <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></code></pre>
 <p>Let’s make a comparison using the graphs from the original

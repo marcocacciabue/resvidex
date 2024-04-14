@@ -47,11 +47,11 @@ library(resvidex)
 file_path<-system.file("extdata","test_dataset.fasta",package="resvidex")
 
 # Use the wrapper function. You can change the classification model and pass other arguments
-Classify(inputFile=file_path,model=FULL_GENOME)
+classify(inputFile=file_path,model=FULL_GENOME)
 
 #If you want to save the results in a file in your working directory, you can run the pipeline and
 #save it as a variable to export
-Classification_Print<-Classify(inputFile=file_path,model=FULL_GENOME)
+Classification_Print<-classify(inputFile=file_path,model=FULL_GENOME)
 utils::write.csv2(Classification_Print,"Classification_file.csv")
 ```
 

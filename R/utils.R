@@ -1,6 +1,6 @@
 
 
-#' ModelControl
+#' model_control
 #' Utility function to check the classification model object
 #'
 #' @param model  random forest classification model. Must be FULL_GENOME. See [FULL_GENOME].
@@ -10,8 +10,8 @@
 #' @export
 #'
 #' @examples
-#' ModelControl(FULL_GENOME)
-ModelControl<- function(model){
+#' model_control(FULL_GENOME)
+model_control<- function(model){
 
   if (is.null(model)){
     stop("Model argument must be indicated and cannot be null. Try model=FULL_GENOME")

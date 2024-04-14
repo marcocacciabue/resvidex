@@ -88,7 +88,7 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
         div(
                id="testeo",
                textInput("user", "User name (optional)", "anonymous"),
-               checkboxInput("qualityfilter", "Classify even if quality of sequence is low? (Not recommended)", FALSE),
+               checkboxInput("qualityfilter", "classify even if quality of sequence is low? (Not recommended)", FALSE),
                sliderInput("QC_value", "Probability threshold (default 0.4):",
                            min = 0.3, max = 1,
                            value = 0.4, step = 0.05),
@@ -312,13 +312,13 @@ sequence in the textbox"
     #Calculate k-mer counts from SequenceData sequences
     progress$inc(0.4, detail = paste("Counting kmers"))
 
-    NormalizeData<-resvidex::Kcounter(SequenceData,
+    NormalizeData<-resvidex::kcounter(SequenceData,
                                       model)
 
 
-    data_out <-  resvidex::PredictionCaller(NormalizeData,
+    data_out <-  resvidex::prediction_caller(NormalizeData,
                                             model=model)
-    # data_out<-resvidex::QualityControl(model=model,
+    # data_out<-resvidex::quality_control(model=model,
     #                                    data=data_out)
     list(message="Done!",data_out=data_out)
                 })
@@ -332,13 +332,13 @@ sequence in the textbox"
     model <- model_reactive()$model
     data_out<-data_reactive()$data_out
 
-    data_out<-resvidex::QualityControl(model=model,
+    data_out<-resvidex::quality_control(model=model,
                                        data=data_out,
                                        QC_value=input$QC_value,
                                        N_value=input$N_value,
                                        Length_value=input$Length_value)
     if(input$qualityfilter==FALSE){
-      data_out_filtered<-resvidex::Quality_filter(data=data_out)
+      data_out_filtered<-resvidex::quality_filter(data=data_out)
     }else{
       data_out_filtered<-data_out
     }

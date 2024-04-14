@@ -46,7 +46,7 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/Classify.html</loc>
+    <loc>/reference/classify.html</loc>
   </url>
   <url>
     <loc>/reference/FULL_GENOME.html</loc>
@@ -61,21 +61,21 @@
     <loc>/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/Kcounter.html</loc>
+    <loc>/reference/kcounter.html</loc>
   </url>
   <url>
-    <loc>/reference/ModelControl.html</loc>
+    <loc>/reference/model_control.html</loc>
   </url>
   <url>
-    <loc>/reference/PredictionCaller.html</loc>
+    <loc>/reference/prediction_caller.html</loc>
   </url>
   <url>
-    <loc>/reference/QualityControl.html</loc>
+    <loc>/reference/quality_control.html</loc>
   </url>
   <url>
-    <loc>/reference/Quality_filter.html</loc>
+    <loc>/reference/quality_filter.html</loc>
   </url>
   <url>
-    <loc>/reference/runShinyApp.html</loc>
+    <loc>/reference/run_shiny_app.html</loc>
   </url>
 </urlset>

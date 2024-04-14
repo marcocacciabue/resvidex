@@ -1,7 +1,7 @@
 library("resvidex")
 
 file_path<-system.file("extdata","test_dataset.fasta",package="resvidex")
-Classification<-Classify(inputFile=file_path,model=FULL_GENOME)
+Classification<-classify(inputFile=file_path,model=FULL_GENOME)
 
 test_that("A dataframe is produced with the corresponding results ", {
   expect_true(is.data.frame(Classification))
