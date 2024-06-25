@@ -31,6 +31,11 @@ authors:
 - name: Stephanie Goya
   orcid: "0000-0001-7479-3064"
   affiliation: 4
+- name: María Inés Gismondi
+  orcid: "0000-0002-2566-1169"
+  corresponding: yes
+  equal-contrib: no
+  affiliation: 1, 2
 - name: Mariana Viegas
   orcid: "0000-0002-6506-1635"
   affiliation: 5, 1

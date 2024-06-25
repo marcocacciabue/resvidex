@@ -2,9 +2,9 @@ pandoc: 3.1.1
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
-  01_resvidex_vignette: 01_resvidex_vignette.html
-  02_resvidex_vignette_R: 02_resvidex_vignette_R.html
-  03_resvidex_vignette_results: 03_resvidex_vignette_results.html
-  04_an_example: 04_an_example.html
-last_built: 2024-04-08T11:56Z
+  E1_resvidex_vignette: E1_resvidex_vignette.html
+  E2_resvidex_vignette_R: E2_resvidex_vignette_R.html
+  E3_resvidex_vignette_results: E3_resvidex_vignette_results.html
+  E4_an_example: E4_an_example.html
+last_built: 2024-06-25T19:03Z
 

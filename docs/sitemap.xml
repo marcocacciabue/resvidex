@@ -19,6 +19,18 @@
     <loc>/articles/an_example.html</loc>
   </url>
   <url>
+    <loc>/articles/E1_resvidex_vignette.html</loc>
+  </url>
+  <url>
+    <loc>/articles/E2_resvidex_vignette_R.html</loc>
+  </url>
+  <url>
+    <loc>/articles/E3_resvidex_vignette_results.html</loc>
+  </url>
+  <url>
+    <loc>/articles/E4_an_example.html</loc>
+  </url>
+  <url>
     <loc>/articles/index.html</loc>
   </url>
   <url>
@@ -34,6 +46,12 @@
     <loc>/authors.html</loc>
   </url>
   <url>
+    <loc>/CODE_OF_CONDUCT.html</loc>
+  </url>
+  <url>
+    <loc>/CONTRIBUTING.html</loc>
+  </url>
+  <url>
     <loc>/index.html</loc>
   </url>
   <url>
@@ -46,7 +64,7 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/classify.html</loc>
+    <loc>/reference/Classify.html</loc>
   </url>
   <url>
     <loc>/reference/FULL_GENOME.html</loc>
@@ -61,19 +79,31 @@
     <loc>/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/kcounter.html</loc>
+    <loc>/reference/Kcounter.html</loc>
+  </url>
+  <url>
+    <loc>/reference/ModelControl.html</loc>
   </url>
   <url>
     <loc>/reference/model_control.html</loc>
   </url>
   <url>
+    <loc>/reference/PredictionCaller.html</loc>
+  </url>
+  <url>
     <loc>/reference/prediction_caller.html</loc>
+  </url>
+  <url>
+    <loc>/reference/QualityControl.html</loc>
   </url>
   <url>
     <loc>/reference/quality_control.html</loc>
   </url>
   <url>
-    <loc>/reference/quality_filter.html</loc>
+    <loc>/reference/Quality_filter.html</loc>
+  </url>
+  <url>
+    <loc>/reference/runShinyApp.html</loc>
   </url>
   <url>
     <loc>/reference/run_shiny_app.html</loc>
