@@ -144,36 +144,7 @@ server <- shinyServer(function(input, output, session) {
 
   values <- reactiveValues(SequenceData_FILE = NULL,
                            step = 1)
-  output$step_button_1 <- renderUI({
-    if(values$step==1){
-      actionButton("step_button_1",
-                 label = 1,
-                 class = "btn-success")}else{
-                   actionButton("step_button_1",
-                                label = 1)
 
-                 }
-  })
-
-  output$step_button_2 <- renderUI({
-    if(values$step==2){
-      actionButton("step_button_2",
-                   label = 2,
-                   class = "btn-success")}else{
-                     actionButton("step_button_2",label = 2,)
-
-                   }
-  })
-  output$step_button_3 <- renderUI({
-    if(values$step==3){
-      actionButton("step_button_3",
-                   label = 3,
-                   class = "btn-success")}else{
-                     actionButton("step_button_3",
-                                  label = 3)
-
-                   }
-  })
 
   observeEvent(input$advanceOptions,{
     if (input$advanceOptions==FALSE){
@@ -183,39 +154,7 @@ server <- shinyServer(function(input, output, session) {
     }
   })
 
-  observeEvent(input$step_button_1, {
-    values$step=1
-  })
-  observeEvent(input$step_button_2, {
-    values$step=2
-  })
-  observeEvent(input$step_button_3, {
-    values$step=3
-  })
 
-  observeEvent(input$nxt, {
-    if (values$step < 3){
-      values$step <- values$step + 1}
-
-  })
-
-
-  observeEvent(input$prv, {
-    if (values$step > 1) {
-      values$step <- values$step - 1}
-
-  })
-
-  # observeEvent(values$step,{
-  # runjs('
-  #     document.getElementById("prv").scrollIntoView();
-  #   ')
-  # })
-  # observeEvent(input$advanceOptions,{
-  #   runjs('
-  #     document.getElementById("prv").scrollIntoView();
-  #   ')
-  # })
  observe({
 
   if(values$step > 1){
