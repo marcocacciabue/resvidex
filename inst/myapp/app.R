@@ -154,7 +154,18 @@ server <- shinyServer(function(input, output, session) {
     }
   })
 
+  observeEvent(input$nxt, {
+    if (values$step < 3){
+      values$step <- values$step + 1}
 
+  })
+
+
+  observeEvent(input$prv, {
+    if (values$step > 1) {
+      values$step <- values$step - 1}
+
+  })
  observe({
 
   if(values$step > 1){
