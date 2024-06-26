@@ -182,12 +182,14 @@ server <- shinyServer(function(input, output, session) {
    if(values$step == 1){
      shinyjs::hide(id = "select")
      shinyjs::hide(id = "advanced")
+     shinyjs::hide(id = "prv")
 
    }
    if(values$step == 2){
      shinyjs::show(id = "select")
      shinyjs::show(id = "advanced")
-
+     shinyjs::show(id = "prv")
+     shinyjs::show(id = "nxt")
    }
 
 
@@ -196,6 +198,7 @@ server <- shinyServer(function(input, output, session) {
      shinyjs::hide(id = "select")
      shinyjs::hide(id = "advanced")
      shinyjs::hide(id = "testeo")
+     shinyjs::hide(id = "nxt")
    }else{
      shinyjs::hide(id = "go")
 
