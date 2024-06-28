@@ -99,19 +99,19 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
                            min = 0.1, max = 1,
                            value = 0.5, step = 0.05)))),
       column(12, align = "center",
-             textOutput("run_info")),
+             textOutput("model")),
       column(12, align = "center",
              actionButton("go", "RUN",class = "btn-info")),
       column(4, align = "right",uiOutput("step_button_1")),
       column(4, align = "center",uiOutput("step_button_2")),
       column(4, align = "left",uiOutput("step_button_3")),
+
       column(6, align = "right",
              actionButton("prv", "Prev", class = "btn-info")),
       div(id="hola",
           column(6, align = "left",
              actionButton("nxt", "Next", class = "btn-info"))),
-      column(12, align = "center",
-             textOutput("model")),
+
       br(),
 
       fluidRow(),
@@ -183,6 +183,7 @@ server <- shinyServer(function(input, output, session) {
      shinyjs::hide(id = "select")
      shinyjs::hide(id = "advanced")
      shinyjs::hide(id = "prv")
+     shinyjs::hide(id = "model")
 
    }
    if(values$step == 2){
@@ -190,10 +191,12 @@ server <- shinyServer(function(input, output, session) {
      shinyjs::show(id = "advanced")
      shinyjs::show(id = "prv")
      shinyjs::show(id = "nxt")
+     shinyjs::hide(id = "model")
    }
 
 
    if(values$step == 3){
+     shinyjs::show(id = "model")
      shinyjs::show(id = "go")
      shinyjs::hide(id = "select")
      shinyjs::hide(id = "advanced")
@@ -215,7 +218,7 @@ server <- shinyServer(function(input, output, session) {
        title = "Important message", easyClose = TRUE,
         "Please load the fasta file first and then press RUN.
 Also, remember that the file must NOT exceed 5 MB in size. Optionally, you can paste the
-sequence in the textbox"
+sequence in the textbox or you use the example file."
      ))}})
 
   SequenceData_data<- observeEvent(input$SequenceData,{
@@ -442,15 +445,15 @@ info_model<-reactive({
 
 })
 output$model <- renderText({
-  req(input$go)
+
   model_data<-  model_reactive()$model
-  paste0("You have run the app with the ",
+  text<- paste0("You have selected the ",
          model_data$info,
          " model, version ",
          model_data$date,
          " designed for sequences close to ",
          model_data$genome_size,
-         " nt long.")
+         " nt long. Please press run to continue.")
 })
 
 model_reactive <- eventReactive(input$select,{
