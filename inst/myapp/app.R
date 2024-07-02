@@ -44,9 +44,7 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
       div( id= "container",
       div( id="row_d_flex",
            div(id= "text-bg", "ReSVidex was developed by Marco Cacciabue and Stephanie Goya. Based on a machine learning classification model,
-          it allows the user to identify the RSV subtype, genotype,
-          subgenotype and genetic lineage for each query sequence."))
-
+          it allows the user to identify the RSV lineage for each query sequence."))
            )
 
       ),
