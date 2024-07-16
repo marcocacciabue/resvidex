@@ -43,8 +43,8 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
   div(id="banner_main",
       div( id= "container",
       div( id="row_d_flex",
-           div(id= "text-bg", "ReSVidex was developed by Marco Cacciabue and Stephanie Goya. Based on a machine learning classification model,
-          it allows the user to identify the RSV lineage for each query sequence."))
+           div(id= "text-bg", "Based on a machine learning classification model, it allows the user to identify the RSV lineage for each query sequence based on the classification of the RSV Genotyping Consensus Consortium version June, 2024.
+ReSVidex is developed and maintained by Marco Cacciabue, Melina Obregon and Nahuel Fenoglio."))
            )
 
       ),
@@ -87,7 +87,9 @@ ui <-   fluidPage(title = "ReSVidex whole genome version",
                id="testeo",
                textInput("user", "User name (optional)", "anonymous"),
                checkboxInput("qualityfilter", "classify even if quality of sequence is low? (Not recommended)", FALSE),
-               sliderInput("QC_value", "Probability threshold (default 0.4):",
+
+               sliderInput("QC_value", HTML("Probability threshold (default 0.4):",
+                 as.character(actionLink(inputId = 'action_link', label = 'get help',icon= icon("fa-solid fa-question")))),
                            min = 0.3, max = 1,
                            value = 0.4, step = 0.05),
                sliderInput("N_value", "Percentage of acceptable ambiguous bases (default 2):",
