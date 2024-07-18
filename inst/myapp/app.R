@@ -75,8 +75,8 @@ ReSVidex is developed and maintained by Marco Cacciabue, Melina Obregon and Nahu
       column(12, align = "center",
              radioGroupButtons(
                inputId = "select",
-               label = "Choose the model according to the length of your sequences
-               (FULL_GENOME = 15000 nt, G = 900 nt)",
+               label = HTML("Choose the appropriate model",
+               as.character(actionLink(inputId = 'model_action_link', label = ' ',icon= icon("fas fa-question-circle")))),
                choices = c("FULL_GENOME", "G"),
                status = "primary")),
       column(12, align = "center",
@@ -89,19 +89,19 @@ ReSVidex is developed and maintained by Marco Cacciabue, Melina Obregon and Nahu
 
 
                sliderInput("QC_value", HTML("Probability threshold (default 0.4):",
-                 as.character(actionLink(inputId = 'QC_value_action_link', label = ' ',icon= icon("far fa-question-circle")))),
+                 as.character(actionLink(inputId = 'QC_value_action_link', label = ' ',icon= icon("fas fa-question-circle")))),
                            min = 0.3, max = 1,
                            value = 0.4, step = 0.05),
                sliderInput("N_value", HTML("Percentage of acceptable ambiguous bases (default 2):",
-                                           as.character(actionLink(inputId = 'N_value_action_link', label = ' ',icon= icon("far fa-question-circle")))),
+                                           as.character(actionLink(inputId = 'N_value_action_link', label = ' ',icon= icon("fas fa-question-circle")))),
                            min = 0.1, max = 10,
                            value = 2, step = 0.05),
                sliderInput("Length_value", HTML("Proportion of difference to the expected sequence length (default 0.5): :",
-                                                as.character(actionLink(inputId = 'Length_value_action_link', label = ' ',icon= icon("far fa-question-circle")))),
+                                                as.character(actionLink(inputId = 'Length_value_action_link', label = ' ',icon= icon("fas fa-question-circle")))),
                            min = 0.1, max = 1,
                            value = 0.5, step = 0.05),
                checkboxInput("qualityfilter", HTML("classify even if quality of sequence is low? (Not recommended)",
-                                                   as.character(actionLink(inputId = 'qualityfilter_action_link', label = ' ',icon= icon("far fa-question-circle")))),
+                                                   as.character(actionLink(inputId = 'qualityfilter_action_link', label = ' ',icon= icon("fas fa-question-circle")))),
                              FALSE)
                ))),
       column(12, align = "center",
@@ -226,6 +226,20 @@ server <- shinyServer(function(input, output, session) {
 Also, remember that the file must NOT exceed 5 MB in size. Optionally, you can paste the
 sequence in the textbox or you use the example file."
      ))}})
+
+  #### Handle help modals for the model selection step
+  observeEvent(input$model_action_link, {
+
+    showModal(modalDialog(
+      title = "Choose model help", easyClose = TRUE,
+      "Resvidex comes with two classification models. If you have sequences that span
+      the whole viral genome then select the FULL_GENOME model. Sequences are expected to have a length close to 15000 nt.
+      If you have sequences that only cover the G gene then select the G model.
+      Sequences are expected to have a length close to 900 nt.
+      The selected model will be used for all the sequences.
+      If you think other gene models would be usefull, please contact the developers."
+    ))})
+
 
 #### Handle help modals for the advance options
   observeEvent(input$QC_value_action_link, {
