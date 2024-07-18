@@ -40,7 +40,7 @@ For sequences with any FLAG present set result Clade to LowQuality
     
     <a class="navbar-brand me-2" href="../index.html">resvidex</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9012</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9013</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -136,11 +136,13 @@ For sequences with any FLAG present set result Clade to LowQuality
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">Classification</span><span class="op">&lt;-</span><span class="fu">classify</span><span class="op">(</span>inputFile<span class="op">=</span><span class="va">file_path</span>,model<span class="op">=</span><span class="va">FULL_GENOME</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in classify(inputFile = file_path, model = FULL_GENOME):</span> could not find function "classify"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#the variable Classification has now all the sequences classified</span></span></span>
 <span class="r-in"><span><span class="va">Classification</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Classification' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                            Label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 KM360090.1 Respiratory syncytial virus isolate RSV Memphis-37, complete genome</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Clade Probability Length Length_QC N N_QC Probability_QC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 A.2.1       0.785  15147      TRUE 0 TRUE           TRUE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="co">#if you want to export the prediction</span></span></span>

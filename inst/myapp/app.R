@@ -86,18 +86,24 @@ ReSVidex is developed and maintained by Marco Cacciabue, Melina Obregon and Nahu
         div(
                id="testeo",
                textInput("user", "User name (optional)", "anonymous"),
-               checkboxInput("qualityfilter", "classify even if quality of sequence is low? (Not recommended)", FALSE),
+
 
                sliderInput("QC_value", HTML("Probability threshold (default 0.4):",
-                 as.character(actionLink(inputId = 'action_link', label = 'get help',icon= icon("fa-solid fa-question")))),
+                 as.character(actionLink(inputId = 'QC_value_action_link', label = ' ',icon= icon("far fa-question-circle")))),
                            min = 0.3, max = 1,
                            value = 0.4, step = 0.05),
-               sliderInput("N_value", "Percentage of acceptable ambiguous bases (default 2):",
+               sliderInput("N_value", HTML("Percentage of acceptable ambiguous bases (default 2):",
+                                           as.character(actionLink(inputId = 'N_value_action_link', label = ' ',icon= icon("far fa-question-circle")))),
                            min = 0.1, max = 10,
                            value = 2, step = 0.05),
-               sliderInput("Length_value", "Proportion of difference to the expected sequence length (default 0.5): :",
+               sliderInput("Length_value", HTML("Proportion of difference to the expected sequence length (default 0.5): :",
+                                                as.character(actionLink(inputId = 'Length_value_action_link', label = ' ',icon= icon("far fa-question-circle")))),
                            min = 0.1, max = 1,
-                           value = 0.5, step = 0.05)))),
+                           value = 0.5, step = 0.05),
+               checkboxInput("qualityfilter", HTML("classify even if quality of sequence is low? (Not recommended)",
+                                                   as.character(actionLink(inputId = 'qualityfilter_action_link', label = ' ',icon= icon("far fa-question-circle")))),
+                             FALSE)
+               ))),
       column(12, align = "center",
              textOutput("model")),
       column(12, align = "center",
@@ -220,6 +226,48 @@ server <- shinyServer(function(input, output, session) {
 Also, remember that the file must NOT exceed 5 MB in size. Optionally, you can paste the
 sequence in the textbox or you use the example file."
      ))}})
+
+#### Handle help modals for the advance options
+  observeEvent(input$QC_value_action_link, {
+
+      showModal(modalDialog(
+        title = "Advanced options help", easyClose = TRUE,
+        "Each classification comes with a probability value, which is the proportion of trees
+        that assign the informed clade. The closer this number is to 1 the better the classification is.
+        The probability threshold parameter allows to set the mininum probability value to
+        consider a classification as valid (proportion). Any classification with a lower value will be set
+        as low quality.
+        Results below 0.2 will be flagged as unknown, regardless of the probability threshold
+        (meaning that the sequences are probably not RSV related)."
+      ))})
+  observeEvent(input$N_value_action_link, {
+
+    showModal(modalDialog(
+      title = "Advanced options help", easyClose = TRUE,
+      "The number of ambiguous bases present in a sequence can have a negative impact on the
+      classification result.
+      This parameter controls how many bases of the sequence are allowed to be ambiguous.
+      Sequences with more ambiguous bases will be set as low quality.
+      The larger the number the more ambiguous bases would be accepted (percentage)."
+    ))})
+
+  observeEvent(input$Length_value_action_link, {
+
+    showModal(modalDialog(
+      title = "Advanced options help", easyClose = TRUE,
+      "This parameter controls how much the sequence length can differ
+      from the expected sequence length according to the classification model selected (proportion).
+      The larger the value the more difference in size would be acceptable."))})
+
+  observeEvent(input$qualityfilter_action_link, {
+
+    showModal(modalDialog(
+      title = "Advanced options help", easyClose = TRUE,
+      "This option forces to show the classification result for all sequences, even those that
+      do not meet the quality criteria.
+      Have in mind that classification with a probability below 0.2 will be flagged as unknown
+      nonetheless (meaning that the sequences are probably not RSV related)."))})
+
 
   SequenceData_data<- observeEvent(input$SequenceData,{
 
