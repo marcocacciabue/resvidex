@@ -10,9 +10,17 @@ Marco Cacciabue, Nahuel Fenoglio, Melina Obregón
 [![](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 [![R-CMD-check](https://github.com/marcocacciabue/resvidex/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/marcocacciabue/resvidex/actions/workflows/R-CMD-check.yaml)
-<!-- badges: end --> If you have a working R and Rstudio setup you can
-install the released version of **ReSVidex** from
-[GitHub](https://github.com/) with:
+<!-- badges: end -->
+
+If you wish to test the app without installation and directly on the web
+go to one the following servers:
+
+## [Resvidex web-application server](https://cacciabue.shinyapps.io/resvidex_wg/)
+
+## :arrow_double_down: Installation
+
+If you have a working R and Rstudio setup you can install the released
+version of **ReSVidex** from [GitHub](https://github.com/) with:
 
 ``` r
 if (!require("remotes", quietly = TRUE))
@@ -26,6 +34,16 @@ installation. Only the first time it runs.
 
 Alternatively, you can download the repository as a .zip file and
 install it manually with Rstudio.
+
+## :computer: Deploying **ReSVidex**
+
+To start the app simply run the following command:
+
+``` r
+resvidex::run_shiny_app()
+```
+
+:+1: You are ready to classify your data.
 
 ## **ReSVidex** is an R package
 
