@@ -152,7 +152,8 @@ server <- shinyServer(function(input, output, session) {
                            step = 1)
 
 #Some parts of the script has been moved to increase readability of the app.
-  source("./help.r", local = TRUE)
+  source(system.file("myapp","help.R",
+                     package = "resvidex", mustWork = TRUE), local = TRUE)
 
 
   SequenceData_data<- observeEvent(input$SequenceData,{
