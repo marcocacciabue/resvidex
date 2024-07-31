@@ -77,7 +77,7 @@ ReSVidex is developed and maintained by Marco Cacciabue, Melina Obregon and Nahu
                inputId = "select",
                label = HTML("Choose the appropriate model",
                as.character(actionLink(inputId = 'model_action_link', label = ' ',icon= icon("fas fa-question-circle")))),
-               choices = c("FULL_GENOME", "G"),
+               choices = c("FULL_GENOME", "G", "G_F"),
                status = "primary")),
       column(12, align = "center",
              div(id="advanced",

@@ -81,10 +81,12 @@ observeEvent(input$model_action_link, {
 
   showModal(modalDialog(
     title = "Choose model help", easyClose = TRUE,
-    "Resvidex comes with two classification models. If you have sequences that span
+    "Resvidex comes with three classification models. If you have sequences that span
       the whole viral genome then select the FULL_GENOME model. Sequences are expected to have a length close to 15000 nt.
       If you have sequences that only cover the G gene then select the G model.
       Sequences are expected to have a length close to 900 nt.
+      If you have sequences that cover the G gene plus the F gene then select the G_F model.
+      Sequences are expected to have a length close to 2800 nt.
       The selected model will be used for all the sequences.
       If you think other gene models would be usefull, please contact the developers."
   ))})
