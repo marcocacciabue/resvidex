@@ -18,8 +18,8 @@
 <article-id pub-id-type="publisher-id">0</article-id>
 <article-id pub-id-type="doi">N/A</article-id>
 <title-group>
-<article-title>ReSVidex: An R package for molecular classification of
-Respiratory Syncytial (HRSV) Virus sequences</article-title>
+<article-title>Resvidex: An R package for molecular classification of
+Respiratory Syncytial Virus (HRSV) sequences</article-title>
 </title-group>
 <contrib-group>
 <contrib contrib-type="author" corresp="yes">
@@ -111,9 +111,9 @@ Argentina</institution>
 <corresp id="cor-1">* E-mail: <email></email></corresp>
 <corresp id="cor-2">* E-mail: <email></email></corresp>
 </author-notes>
-<pub-date date-type="pub" publication-format="electronic" iso-8601-date="2024-02-28">
-<day>28</day>
-<month>2</month>
+<pub-date date-type="pub" publication-format="electronic" iso-8601-date="2024-08-06">
+<day>6</day>
+<month>8</month>
 <year>2024</year>
 </pub-date>
 <volume>¿VOL?</volume>
@@ -143,17 +143,23 @@ a Creative Commons Attribution 4.0 International License (CC BY
 <body>
 <sec id="summary">
   <title>Summary</title>
+  <p><monospace>Resvidex</monospace> aims to facilitate the
+  classification of human respiratory syncytial virus (HRSV) sequences
+  at the lower levels of resolution. It can handle both whole genome and
+  partial sequences (three classification models).
+  <monospace>Resvidex</monospace> comes with its own shiny app for an
+  user-friendly option.</p>
 </sec>
 <sec id="statement-of-need">
   <title>Statement of need</title>
-  <p>The human respiratory syncytial virus (HRSV) is one of the leading
-  causes of acute lower respiratory tract infection in children, elderly
-  and immunocompromised individuals. Below species level, there are two
-  antigenic groups: HRSV subgroup A (HRSV-A) and B (HRSV-B). Within each
-  subgroup, genotypes are defined based on statistically supported
-  phylogenetic clades that can be inferred with the second hypervariable
-  region (2HR) of the G gene, which encodes the attachment glycoprotein
-  and exhibits the highest genetic and antigenic variability.</p>
+  <p>The HRSV is one of the leading causes of acute lower respiratory
+  tract infection in children, elderly and immunocompromised
+  individuals. Below species level, there are two antigenic groups: HRSV
+  subgroup A (HRSV-A) and B (HRSV-B). Within each subgroup, genotypes
+  are defined based on statistically supported phylogenetic clades that
+  can be inferred with the second hypervariable region (2HR) of the G
+  gene, which encodes the attachment glycoprotein and exhibits the
+  highest genetic and antigenic variability.</p>
   <p>Clade classification typically involves analyzing gene sequences
   from current strains alongside a set of reference sequences using
   phylogenetic analysis. This process is usually time-consuming and
@@ -167,16 +173,16 @@ a Creative Commons Attribution 4.0 International License (CC BY
   et al., 2021</xref>;
   <xref alt="Wang Y, 2020" rid="ref-Wang_2020" ref-type="bibr">Wang Y,
   2020</xref>).</p>
-  <p>Here we introduce <monospace>Resvidex</monospace>, an open-source R
+  <p>Here we introduce <monospace>resvidex</monospace>, an open-source R
   package
   (<xref alt="R Core Team, 2023" rid="ref-r-2023" ref-type="bibr">R Core
   Team, 2023</xref>), dedicated to aid researchers in classifying HRSV
-  sequences (full genome or G gene) at the lower levels of resolution in
-  an easy, fast and reproducible way. <monospace>Resvidex</monospace> is
-  a tool based on alignment‐free machine learning for HRSV
-  classification into subtypes and clades. It is fast, sensitive,
-  specific, and ready to implement, as it is available to run locally
-  for R users. It also includes a web application
+  sequences (full genome, G gene or G+F region) at the lower levels of
+  resolution in an easy, fast and reproducible way.
+  <monospace>Resvidex</monospace> is a tool based on alignment‐free
+  machine learning for HRSV classification into subtypes and clades. It
+  is sensitive, specific, and ready to implement, as it is available to
+  run locally for R users. It also includes a web application
   (<xref alt="Chang et al., 2023" rid="ref-shiny" ref-type="bibr">Chang
   et al., 2023</xref>) that has a user‐friendly interface. Additionally,
   it can be tested on an internet connection without any installation
@@ -218,16 +224,48 @@ a Creative Commons Attribution 4.0 International License (CC BY
   researchers who want to classify their samples of HRSV according to
   the Goya et. al. proposal
   (<xref alt="Goya et al., 2024" rid="ref-goya_unified_2024" ref-type="bibr">Goya
-  et al., 2024</xref>). It comes with two classification models: one for
-  whole genome sequences (FULL_GENOME for sequence length of
-  approximately 15000 bp) and other for the G coding sequence (G for
-  approximately 900 bp). The HRSV classification comprises 41 clades or
-  genetic groups: 25 for subgroup A and 16 for subgroup B.</p>
+  et al., 2024</xref>). It comes with three classification models: one
+  for whole genome sequences (“FULL_GENOME”, 15000 nt), one for
+  sequences that cover the G coding region (“G”, 900 nt) and one for
+  sequences that cover the G+F coding region (“G_F”, 2800 nt). The HRSV
+  classification comprises 41 clades or genetic groups: 25 for subgroup
+  A and 16 for subgroup B.</p>
 </sec>
 <sec id="examples">
   <title>Examples</title>
-  <p>A few vignettes are available, these include: How to use the shiny
-  app
+  <p>The main functions of <monospace>resvidex</monospace> are the
+  following:</p>
+  <list list-type="bullet">
+    <list-item>
+      <p><monospace>kcounter()</monospace> : count and normalize the
+      k-mers present in each sequence.</p>
+    </list-item>
+    <list-item>
+      <p><monospace>prediction_caller()</monospace> : perform the
+      classification based on the pretrained classification model.</p>
+    </list-item>
+    <list-item>
+      <p><monospace>quality_control()</monospace> and
+      <monospace>quality_filter()</monospace> : add the corresponding
+      quality FLAGs.</p>
+    </list-item>
+  </list>
+  <p>Additionally, <monospace>classify()</monospace> acts like a wrapper
+  function, enabling the handling of all the above functions in one
+  simple step, for example:</p>
+  <code language="r script">#load the library
+library(resvidex)
+
+# In this example, we use a test file provided with the package. 
+
+file_path&lt;-system.file(&quot;extdata&quot;,&quot;test_dataset.fasta&quot;,package=&quot;resvidex&quot;)
+
+# Use the wrapper function. You can change the classification model and pass other arguments as needed.
+classify(inputFile=file_path,model=FULL_GENOME)</code>
+  <p>Alternatively, the user can fire up the
+  <monospace>resvidex</monospace> shiny app using the
+  <monospace>run_shiny_app()</monospace> function.</p>
+  <p>Other examples are available as vignettes: How to use the shiny app
   <ext-link ext-link-type="uri" xlink:href="https://marcocacciabue.github.io/resvidex/articles/01_resvidex_vignette.html">vignette</ext-link>,
   step-by-step explanation of a in-built
   <ext-link ext-link-type="uri" xlink:href="https://marcocacciabue.github.io/resvidex/articles/02_resvidex_vignette_R.html">example</ext-link>,

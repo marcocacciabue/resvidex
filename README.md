@@ -2,7 +2,7 @@ Marco Cacciabue, Nahuel Fenoglio, Melina Obregón
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# **ReSVidex**: <img src='man/figures/hex.png' style="float:right; height:200px;" /> Molecular classification of Respiratory Syncytial Virus sequences
+# **resvidex**: <img src='man/figures/hex.png' style="float:right; height:200px;" /> Molecular classification of Respiratory Syncytial Virus sequences
 
 <!-- badges: start -->
 
@@ -20,7 +20,7 @@ go to one the following servers:
 ## :arrow_double_down: Installation
 
 If you have a working R and Rstudio setup you can install the released
-version of **ReSVidex** from [GitHub](https://github.com/) with:
+version of **resvidex** from [GitHub](https://github.com/) with:
 
 ``` r
 if (!require("remotes", quietly = TRUE))
@@ -35,7 +35,7 @@ installation. Only the first time it runs.
 Alternatively, you can download the repository as a .zip file and
 install it manually with Rstudio.
 
-## :computer: Deploying **ReSVidex**
+## :computer: Deploying **resvidex**
 
 To start the app simply run the following command:
 
@@ -45,7 +45,7 @@ resvidex::run_shiny_app()
 
 :+1: You are ready to classify your data.
 
-## **ReSVidex** is an R package
+## **resvidex** is an R package
 
 This means that users that prefer working directly in an R console can
 use some of the exported functions. The easiest way is to use the
@@ -78,7 +78,7 @@ file_path<-system.file("extdata","test_dataset.fasta",package="resvidex")
 # We load the sequences
 sequence<-ape::read.FASTA(file_path,type = "DNA")
 
-# We the count and normalize the k-mers
+# We count and normalize the k-mers
 NormalizedData <- kcounter(SequenceData=sequence,model=FULL_GENOME)
 
 # We perform the classification
@@ -97,9 +97,9 @@ PredictedData
 
 ## :whale: Docker images available
 
-### **ReSVidex** as a shiny app in docker
+### **resvidex** as a shiny app in docker
 
-Another way to run **ReSVidex** as a shiny app is to use the docker
+Another way to run **resvidex** as a shiny app is to use the docker
 image. Follow these steps:
 
 1.  If you don´t already have it, install docker:
@@ -126,7 +126,7 @@ docker run -d --rm -p 3838:3838 cacciabue/resvidex:shiny
     file and press RUN.
 6.  You can save a report using the corresponding button.
 
-### **ReSVidex** in a docker image with all dependencies already installed
+### **resvidex** in a docker image with all dependencies already installed
 
 For more reproducibility a fully operational environment is available to
 work directly in docker:

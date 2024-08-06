@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
   out.width = "100%"
   
 )
-app_name <- "ReSVidex"
+app_name <- "resvidex"
 ```
 
 # **`r app_name `**: <img src='man/figures/hex.png' style="float:right; height:200px;" /> Molecular classification of Respiratory Syncytial Virus sequences
@@ -89,7 +89,7 @@ file_path<-system.file("extdata","test_dataset.fasta",package="resvidex")
 # We load the sequences
 sequence<-ape::read.FASTA(file_path,type = "DNA")
 
-# We the count and normalize the k-mers
+# We count and normalize the k-mers
 NormalizedData <- kcounter(SequenceData=sequence,model=FULL_GENOME)
 
 # We perform the classification
@@ -108,9 +108,9 @@ PredictedData
 
 ## :whale: Docker images available
 
-### **ReSVidex** as a shiny app in docker
+### **`r app_name `** as a shiny app in docker
 
-Another way to run **ReSVidex** as a shiny app is to use the docker
+Another way to run **`r app_name `** as a shiny app is to use the docker
 image. Follow these steps:
 
 1.  If you don´t already have it, install docker:
@@ -137,7 +137,7 @@ docker run -d --rm -p 3838:3838 cacciabue/resvidex:shiny
     file and press RUN.
 6.  You can save a report using the corresponding button.
 
-### **ReSVidex** in a docker image with all dependencies already installed
+### **`r app_name `** in a docker image with all dependencies already installed
 
 For more reproducibility a fully operational environment is available to
 work directly in docker:
