@@ -369,7 +369,7 @@ output$report <- downloadHandler(
 )
 
 info_model<-reactive({
-  req(input$select)
+  #req(input$select)
   model_data<-  model_reactive()$model
   model1_data<-data.frame(Model=model_data$info,
                           date=model_data$date,
@@ -392,11 +392,11 @@ output$model <- renderText({
 })
 
 model_reactive <- eventReactive(input$select,{
-  if (input$select=="FULL_GENOME"){
-    model <- resvidex::FULL_GENOME}
-  else{
-      model <- resvidex::G
-    }
+  if (input$select=="FULL_GENOME") model <- resvidex::FULL_GENOME
+
+  if (input$select=="G")  model <- resvidex::G
+
+  if (input$select=="G_F")  model <- resvidex::G_F
   list(model=model)
 })
 

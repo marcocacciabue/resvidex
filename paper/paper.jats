@@ -56,6 +56,16 @@ Respiratory Syncytial (HRSV) Virus sequences</article-title>
 </name>
 <xref ref-type="aff" rid="aff-4"/>
 </contrib>
+<contrib contrib-type="author" corresp="yes">
+<contrib-id contrib-id-type="orcid">https://orcid.org/0000-0002-2566-1169</contrib-id>
+<name>
+<surname>Gismondi</surname>
+<given-names>María Inés</given-names>
+</name>
+<xref ref-type="aff" rid="aff-1"/>
+<xref ref-type="aff" rid="aff-2"/>
+<xref ref-type="corresp" rid="cor-2"><sup>*</sup></xref>
+</contrib>
 <contrib contrib-type="author">
 <contrib-id contrib-id-type="orcid">https://orcid.org/0000-0002-6506-1635</contrib-id>
 <name>
@@ -99,6 +109,7 @@ Argentina</institution>
 </contrib-group>
 <author-notes>
 <corresp id="cor-1">* E-mail: <email></email></corresp>
+<corresp id="cor-2">* E-mail: <email></email></corresp>
 </author-notes>
 <pub-date date-type="pub" publication-format="electronic" iso-8601-date="2024-02-28">
 <day>28</day>

@@ -101,7 +101,7 @@ The following table lists the models used for the classification.
 ```{r,echo=FALSE, warning=FALSE,message=FALSE}
 
 
-model1_data<-  info_model()$model1_data
+model1_data<-  info_model()
 
 
 datatable(model1_data)
