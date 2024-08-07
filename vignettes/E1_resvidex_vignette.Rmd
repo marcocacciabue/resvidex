@@ -20,14 +20,10 @@ app_name <- "ReSVidex"
 ## The app offers the easiest way to use the **`r app_name `** package. Just follow the next steps:
 
 ```{r out.width = '100%', echo = FALSE}
-knitr::include_graphics("app_1.png")
-knitr::include_graphics("app_2.png")
-```
-
-## There is an extra step, if you want to change the parameters of the quality test:
-
-```{r out.width = '100%', echo = FALSE}
-knitr::include_graphics("app_3.png")
-knitr::include_graphics("app_4.png")
+knitr::include_graphics("vignette_1.png")
+knitr::include_graphics("vignette_2.png")
+knitr::include_graphics("vignette_3.png")
+knitr::include_graphics("vignette_4.png")
+knitr::include_graphics("vignette_5.png")
 ```
 
