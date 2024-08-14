@@ -102,7 +102,7 @@ observeEvent(input$QC_value_action_link, {
         The probability threshold parameter allows to set the mininum probability value to
         consider a classification as valid (proportion). Any classification with a lower value will be set
         as low quality.
-        Results below 0.2 will be flagged as unknown, regardless of the probability threshold
+        Results below 0.3 will be flagged as unknown, regardless of the probability threshold
         (meaning that the sequences are probably not RSV related)."
   ))})
 observeEvent(input$N_value_action_link, {
