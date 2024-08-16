@@ -23,7 +23,7 @@ app_name <- "ReSVidex"
 knitr::include_graphics("vignette_1.png")
 knitr::include_graphics("vignette_2.png")
 knitr::include_graphics("3.png")
-knitr::include_graphics("vignette_4.png")
-knitr::include_graphics("vignette_5.png")
+knitr::include_graphics("4.png")
+knitr::include_graphics("5.png")
 ```
 
